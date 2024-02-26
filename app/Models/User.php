@@ -1,0 +1,124 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+
+class User extends Authenticatable implements MustVerifyEmail
+{
+    use Notifiable;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password', 'user_type'
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    public function profile()
+    {
+
+        return $this->hasOne(Profile::class, "user_id");
+    }
+
+    public function category()
+    {
+        return $this->hasOne(Category::class);
+    }
+
+    public function dealership()
+    {
+        return $this->hasOne(Dealership::class);
+    }
+
+    public function Brand()
+    {
+        return $this->hasOne(Brand::class);
+    }
+
+    public function Driver()
+    {
+        return $this->hasOne(Driver::class);
+    }
+
+
+    public function Province()
+    {
+        return $this->hasOne(Province::class);
+    }
+
+
+    public function Group()
+    {
+        return $this->hasOne(Group::class);
+    }
+
+    public function Title()
+    {
+        return $this->hasMany(Title::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongstoMany(Role::class);
+    }
+
+    public function isAdmin()
+    {
+        $role = false;
+        if ($this->user_type == "admin") {
+            $role = true;
+        }
+        return $role;
+    }
+
+    public function isEmployer()
+    {
+        $role = false;
+        if ($this->user_type == "employer") {
+            $role = true;
+        }
+        return $role;
+    }
+
+    public function isSeeker()
+    {
+        $role = false;
+        if ($this->user_type == "seeker") {
+            $role = true;
+        }
+        return $role;
+    }
+
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class, 'job_users', 'user_id', 'job_id');
+    }
+
+    public function experience()
+    {
+        return $this->hasMany(WorkExperience::class);
+    }
+}
