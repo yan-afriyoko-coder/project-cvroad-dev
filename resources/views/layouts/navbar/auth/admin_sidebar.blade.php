@@ -18,26 +18,25 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
-          <i class="bi bi-people-fill"></i>
-          <span>Users</span>
+        <a class="nav-link  {{!Request::is('admin/users*') ? 'collapsed' : '' }}" href="{{ route('admin.users.index') }}">
+            <i class="bi bi-people-fill"></i>
+            <span>Users</span>
         </a>
-      </li><!-- End Dashboard Nav -->
-
+    </li><!-- End Dashboard Nav -->
+    
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link {{!Request::is('admin/roles*') ? 'collapsed' : '' }}" href="{{ route('admin.roles.index') }}">
           <i class="bi bi-people-fill"></i>
           <span>Roles</span>
         </a>
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="index.html">
+        <a class="nav-link {{!Request::is('admin/permissions*') ? 'collapsed' : '' }}" href="{{ route('admin.permissions.index') }}">
           <i class="bi bi-people-fill"></i>
           <span>Permissions</span>
         </a>
       </li><!-- End Dashboard Nav -->
-
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="{{route('admin.groups')}}">

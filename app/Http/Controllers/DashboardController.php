@@ -178,7 +178,7 @@ class DashboardController extends Controller
     public function index()
     {
         $profiles = Profile::latest()->paginate(20);
-        return view('admin.index', compact('profiles'));
+        return view('admin.users.index', compact('profiles'));
     }
 
     public function update($id, Request $request)

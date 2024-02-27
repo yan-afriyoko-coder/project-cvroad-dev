@@ -29,11 +29,9 @@ class UserController extends Controller
 
     public function index()
     {
-        $groups = $this->group_repo->all();
-        $cats = $this->cat_repo->all();
-        $brands = $this->brand_repo->all();
-        return view('candidate.profile', compact('groups', 'cats', 'brands'));
-        return view('profile.index', compact('groups', 'cats', 'brands'));
+        $profiles = Profile::latest()->paginate(20);
+
+        return view('admin.users.index', compact('profiles'));
     }
 
     public function store(Request $request)

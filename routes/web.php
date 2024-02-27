@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Role;
 use GuzzleHttp\Middleware;
+use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\TaskQueue;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -8,13 +10,18 @@ use App\Http\Controllers\JobController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
+use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\DynamicDependent;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DealershipController;
+use App\Http\Controllers\admin\RolesController;
+use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\DealerRegisterController;
 use App\Http\Controllers\WorkExperienceController;
+use App\Http\Controllers\admin\PermissionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,10 +114,6 @@ Route::group(['middleware' => ['auth']], function () {
     //view candidate 
     Route::get('/dealership/jobs/candidate/{candidate}', [DealershipController::class, 'findCandidate'])->name('dealer_job_candidate');
 
-
-
-
-
     //user profile
     Route::get('user/profile', [UserController::class, 'index'])->name('user.profile');
     Route::get('user/profile-edit', [UserController::class, 'edit'])->name('edit.profile');
@@ -125,10 +128,6 @@ Route::group(['middleware' => ['auth']], function () {
     //experience 
     Route::post('user/experience', [WorkExperienceController::class, 'store'])->name('experience.create');
     Route::post('user/experience/delete/{experience}', [WorkExperienceController::class, 'delete'])->name('experience.delete');
-
-
-
-
 
 
     //dealer registration view
@@ -182,6 +181,19 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/candidate-approve/{candidate}', [DashboardController::class, 'approveCandidate'])->name('candidate_approve')->middleware('admin');
         Route::get('/candidate-suspend/{candidate}', [DashboardController::class, 'suspendCandidate'])->name('candidate_suspend')->middleware('admin');
         Route::get('/candidate-reject/{candidate}', [DashboardController::class, 'rejectCandidate'])->name('candidate_reject')->middleware('admin');
+
+        //USERS
+        Route::resource('users', UsersController::class)->middleware('admin');
+        
+
+        //ROLES
+        Route::resource('roles', RolesController::class)->middleware('admin');
+        
+
+        //PERMISSIONS
+        Route::resource('permissions', PermissionsController::class)->middleware('admin');
+        
+
     });
 
     Route::post('/dashboard/{id}/update', [DashboardController::class, 'update'])->name('post.update')->middleware('admin');
@@ -195,15 +207,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Dashboard', [DashboardController::class, 'getAllCandidates'])->middleware('admin');
 });
 
-//Dealer registration form:
-Route::view('dealer/register', 'auth.dealer-register')->name('dealer.register');
-
-
-
-
-
-
-
-
-
-
+    //Dealer registration form:
+    Route::view('dealer/register', 'auth.dealer-register')->name('dealer.register');
