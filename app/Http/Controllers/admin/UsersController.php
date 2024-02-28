@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Controllers\admin;
-
 use App\Models\User;
+use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
-use Termwind\Components\Dd;
 
 class UsersController extends Controller
 {
@@ -24,7 +23,10 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('admin.users.create');
+        $roles = Role::all();
+        $user_types = User::distinct()->pluck('user_type')->toArray();
+
+        return view('admin.users.create', compact('roles', 'user_types'));
     }
 
     /**
@@ -36,17 +38,21 @@ class UsersController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
-            'user_type' => 'required|in:admin,user',
+            'role' => 'required|exists:roles,id',
+            'user_type' => 'required'
         ]);
-    
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->user_type = $request->user_type;
-        $user->save();
-    
-        return redirect()->route('admin.users.index')->with('success', 'User created successfully.');  
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'user_type' => $request->user_type
+        ]);
+
+        $role = Role::findOrFail($request->role);
+        $user->assignRole($role->name);
+
+        return redirect()->route('admin.users.index')->with('success', 'User created successfully.');
     }
 
     /**
@@ -65,8 +71,10 @@ class UsersController extends Controller
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
+        $roles = Role::all();
+        $user_types = User::distinct()->select('user_type')->get();
 
-        return view('admin.users.edit', compact('user'));
+        return view('admin.users.edit', compact('user', 'roles', 'user_types'));
     }
 
     /**
@@ -78,7 +86,7 @@ class UsersController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'nullable|min:6',
-            'user_type' => 'required'
+            'role' => 'required'
         ]);
 
         $user = User::findOrFail($id);
@@ -88,8 +96,10 @@ class UsersController extends Controller
         if ($request->filled('password')) {
             $user->password = bcrypt($request->password);
         }
-        $user->user_type = $request->user_type;
         $user->save();
+
+        $role = Role::findOrFail($request->role);
+        $user->syncRoles([$role->name]);
 
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
     }

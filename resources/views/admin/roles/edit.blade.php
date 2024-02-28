@@ -17,20 +17,25 @@
 {{-- hdhd --}}
 
                 <form action="{{ route('admin.roles.update', $roles->id) }}" method="POST">
-                    @csrf 
-                    @method('PUT')
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" name="name" value="{{ $roles->name }}" required>
-                    </div>
-                    <div class="mb-3">
-                      <label for="name" class="form-label">Permission</label>
-                      <input type="text" class="form-control" name="permission" value="{{ implode(', ', $roles->permissions->pluck('name')->toArray()) }}">
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Update</button>
-                    <a href="{{ route('admin.roles.index') }}" class="btn btn-secondary">Cancel</a>
-                </form>
+                  @csrf 
+                  @method('PUT')
+                  <div class="mb-3">
+                      <label for="name" class="form-label">Name</label>
+                      <input type="text" class="form-control" id="name" name="name" value="{{ $roles->name }}" required>
+                  </div>
+                  <div class="mb-3">
+                      <label for="permissions" class="form-label">Permissions</label><br>
+                      @foreach ($permissions as $permission)
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="checkbox" id="permission_{{ $permission->id }}" name="permissions[]" value="{{ $permission->id }}" {{ $roles->permissions->contains($permission->id) ? 'checked' : '' }}>
+                              <label class="form-check-label" for="permission_{{ $permission->id }}">{{ $permission->name }}</label>
+                          </div>
+                      @endforeach
+                  </div>
+                  
+                  <button type="submit" class="btn btn-primary">Update</button>
+                  <a href="{{ route('admin.roles.index') }}" class="btn btn-secondary">Cancel</a>
+              </form>
 
   </main><!-- End #main -->
   @endsection

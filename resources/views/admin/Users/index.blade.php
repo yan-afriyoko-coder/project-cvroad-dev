@@ -38,7 +38,7 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">User Type</th>
+                    <th scope="col">Role</th>
                     <th scope="col">Email</th>                    
                     <th scope="col">Email Verified</th>                    
                     <th scope="col">Action</th>
@@ -49,7 +49,10 @@
                         <tr>
                             <th>{{ $loop->iteration }}</th>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->user_type }}</td>
+                            <td>
+                              @foreach ($user->roles as $role)
+                              {{ $role->name }}<br>
+                              @endforeach                            </td>
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->email_verified_at}}</td>
                             <td>

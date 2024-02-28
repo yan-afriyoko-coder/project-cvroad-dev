@@ -28,8 +28,6 @@
                 <th scope="row">{{ $permissions->id }}</th>
                 <td>{{ $permissions->name }}</td>
                 <td>
-                    <!-- Tidak ada form input atau tombol Update -->
-                    <!-- Jika ingin menambahkan tombol "Edit", Anda bisa menambahkannya di sini -->
                     <button type="button" class="btn btn-secondary" onclick="history.back()">Back</button>
                 </td>
             </tr>

@@ -24,22 +24,34 @@
                     <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}" required>
                 </div>
                 <div class="mb-3">
-                    <label for="user_type" class="form-label">User Type</label>
-                    <input type="text" class="form-control" id="user_type" name="user_type" value="{{ $user->user_type }}" required>
+                    <label for="role" class="form-label">Role</label>
+                    <select class="form-select" id="role" name="role" required>
+                        @foreach($roles as $role)
+                            <option value="{{ $role->id }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
-                <td>
+                <div class="mb-3">
+                    <label for="user_type" class="form-label">User Type</label>
+                    <select class="form-select" id="user_type" name="user_type" required>
+                        @foreach($user_types as $typeId => $typeName)
+                            <option value="{{ $typeId }}" {{ $user->user_type == $typeId ? 'selected' : '' }}>{{ $typeName }}</option>
+                        @endforeach                  
+                    </select>
+                </div>
+                <div class="mb-3">
                     <label for="email" class="form-label">Email address:</label>
                     <input type="email" class="form-control" name="email" value="{{ $user->email }}">
-                </td><br>
-                <td>
+                </div>
+                <div class="mb-3">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="email_verified" {{ $user->email_verified_at ? 'checked' : '' }}>
                         <label class="form-check-label">Verified</label>
                     </div>
-                </td><br>
+                </div>
                 <button type="submit" class="btn btn-primary">Update</button>
                 <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Cancel</a>
-            </form>
+            </form> 
 
   </main><!-- End #main -->
   @endsection

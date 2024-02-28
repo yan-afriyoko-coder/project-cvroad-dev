@@ -4,7 +4,6 @@
 <main id="main" class="main">
   @component('components.admin_alert')    
   @endcomponent
-  {{-- @dd($users) --}}
     <div class="pagetitle">
       <h1>Users</h1>
       <nav>
@@ -15,7 +14,7 @@
         </ol>
       </nav>
     </div><!-- End Page Title -->
-
+    
     <form action="{{ route('admin.users.store') }}" method="POST">
       @csrf
       <div class="mb-3">
@@ -23,8 +22,22 @@
           <input type="text" class="form-control" id="name" name="name" required>
       </div>
       <div class="mb-3">
-        <label for="user_type" class="form-label">User Type</label>
-        <input type="text" class="form-control" id="user_type" name="user_type" required>
+          <label for="role" class="form-label">Role</label>
+          <select class="form-select" id="role" name="role" required>
+              <option value="">Select Role</option>
+              @foreach($roles as $role)
+                  <option value="{{ $role->id }}">{{ $role->name }}</option>
+              @endforeach
+          </select>
+      </div>
+      <div class="mb-3">
+          <label for="user_type" class="form-label">User Type</label>
+          <select class="form-select" id="user_type" name="user_type" required>
+              <option value="">Select User Type</option>
+              @foreach($user_types as $type)
+                  <option value="{{ $type }}">{{ $type }}</option>
+              @endforeach
+          </select>
       </div>
       <div class="mb-3">
           <label for="email" class="form-label">Email</label>
@@ -34,9 +47,9 @@
           <label for="password" class="form-label">Password</label>
           <input type="password" class="form-control" id="password" name="password" required>
       </div>
-        <button type="submit" class="btn btn-primary">Create</button>
-        <button type="button" class="btn btn-secondary" onclick="clearForm()">Cancel</button>
-    </form>
+      <button type="submit" class="btn btn-primary">Create</button>
+      <button type="button" class="btn btn-secondary" onclick="clearForm()">Cancel</button>
+  </form>
 
   </main><!-- End #main -->
   @endsection
