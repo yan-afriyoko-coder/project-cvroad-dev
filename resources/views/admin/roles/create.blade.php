@@ -25,12 +25,12 @@
           <label for="permissions" class="form-label">Permissions</label><br>
           @foreach($permissions as $permission)
               <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="permission_{{ $permission->id }}" name="permissions[]" value="{{ $permission->id }}" {{ isset($roles) && $roles->permissions->contains($permission) ? 'checked' : '' }}>
+                  <input class="form-check-input" type="checkbox" id="permission_{{ $permission->id }}" name="permissions[]" value="{{ $permission->id }}" {{ isset($roles) && $roles->permissions->contains($permission) ? 'checked' : '' }} required>
                   <label class="form-check-label" for="permission_{{ $permission->id }}">{{ $permission->name }}</label>
               </div>
           @endforeach
       </div>
-      <button type="submit" class="btn btn-primary">Update</button>
+      <button type="submit" class="btn btn-primary">Create</button>
       <a href="{{ route('admin.roles.index') }}" class="btn btn-secondary">Cancel</a>
   </form>
 

@@ -24,9 +24,8 @@ class UsersController extends Controller
     public function create()
     {
         $roles = Role::all();
-        $user_types = User::distinct()->pluck('user_type')->toArray();
 
-        return view('admin.users.create', compact('roles', 'user_types'));
+        return view('admin.users.create', compact('roles'));
     }
 
     /**
@@ -39,17 +38,16 @@ class UsersController extends Controller
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6',
             'role' => 'required|exists:roles,id',
-            'user_type' => 'required'
         ]);
 
+        $role = Role::findOrFail($request->role);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'user_type' => $request->user_type
+            'user_type' => $role->name
         ]);
 
-        $role = Role::findOrFail($request->role);
         $user->assignRole($role->name);
 
         return redirect()->route('admin.users.index')->with('success', 'User created successfully.');

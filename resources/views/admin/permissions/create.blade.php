@@ -22,8 +22,8 @@
             <input type="text" class="form-control" id="name" name="name" required>
         </div>
         <button type="submit" class="btn btn-primary">Create</button>
-        <button type="button" class="btn btn-secondary" onclick="clearForm()">Cancel</button>
-    </form>
+        <a href="{{ route('admin.permissions.index') }}" class="btn btn-secondary">Cancel</a>
+      </form>
     
 
   </main><!-- End #main -->

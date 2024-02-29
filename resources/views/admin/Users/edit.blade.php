@@ -27,21 +27,13 @@
                     <label for="role" class="form-label">Role</label>
                     <select class="form-select" id="role" name="role" required>
                         @foreach($roles as $role)
-                            <option value="{{ $role->id }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}>{{ $role->name }}</option>
+                            <option value="{{ $role->id }}" {{ $user->hasRole($role->name) ? 'selected' : '' }}required>{{ $role->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="user_type" class="form-label">User Type</label>
-                    <select class="form-select" id="user_type" name="user_type" required>
-                        @foreach($user_types as $typeId => $typeName)
-                            <option value="{{ $typeId }}" {{ $user->user_type == $typeId ? 'selected' : '' }}>{{ $typeName }}</option>
-                        @endforeach                  
-                    </select>
-                </div>
-                <div class="mb-3">
                     <label for="email" class="form-label">Email address:</label>
-                    <input type="email" class="form-control" name="email" value="{{ $user->email }}">
+                    <input type="email" class="form-control" name="email" value="{{ $user->email }}"required>
                 </div>
                 <div class="mb-3">
                     <div class="form-check">

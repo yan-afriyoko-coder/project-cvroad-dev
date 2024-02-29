@@ -29,18 +29,7 @@
                   <option value="{{ $role->id }}">{{ $role->name }}</option>
               @endforeach
           </select>
-      </div>
-      <div class="mb-3">
-          <label for="user_type" class="form-label">User Type</label>
-          <select class="form-select" id="user_type" name="user_type" required>
-              <option value="">Select User Type</option>
-              @foreach($user_types as $type)
-                  <option value="{{ $type }}">{{ $type }}</option>
-              @endforeach
-          </select>
-      </div>
-      <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
+      <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control" id="email" name="email" required>
       </div>
       <div class="mb-3">
@@ -48,7 +37,7 @@
           <input type="password" class="form-control" id="password" name="password" required>
       </div>
       <button type="submit" class="btn btn-primary">Create</button>
-      <button type="button" class="btn btn-secondary" onclick="clearForm()">Cancel</button>
+        <a href="{{ route('admin.users.index') }}" class="btn btn-secondary">Cancel</a>
   </form>
 
   </main><!-- End #main -->
