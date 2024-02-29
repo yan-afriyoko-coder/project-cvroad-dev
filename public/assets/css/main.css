@@ -1201,3 +1201,25 @@ footer .footer-wrap .newsletter #subscribe button {
     background-color: #e7e7e7 !important;
     border-radius: 15% !important;
 }
+
+/* candidate button register */
+#backButton {
+    color: #000000 !important;
+    border-color: #808080 !important;
+    background-color: #f0f0f0 !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+}
+
+#register1Button {
+    border-radius: 20px !important;
+    font-weight: 600 !important;
+}
+
+#nextButton {
+    color: #ffffff !important;
+    border-color: #007bff !important;
+    background-color: #007bff !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+}

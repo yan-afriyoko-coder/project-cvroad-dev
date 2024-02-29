@@ -140,7 +140,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     //where the form gets sent information to:
     Route::post('dealer/register', [DealerRegisterController::class, 'dealerRegister'])->name('deal.register');
-
+   //Dealer registration form:
+    Route::view('dealer/register', 'auth.dealer-register')->name('dealer.register');
     //=============================================================ADMIN======================================================
     Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -207,5 +208,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Dashboard', [DashboardController::class, 'getAllCandidates'])->middleware('admin');
 });
 
-    //Dealer registration form:
-    Route::view('dealer/register', 'auth.dealer-register')->name('dealer.register');
+ 
