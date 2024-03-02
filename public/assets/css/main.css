@@ -1223,3 +1223,17 @@ footer .footer-wrap .newsletter #subscribe button {
     border-radius: 12px !important;
     font-weight: 600 !important;
 }
+
+.step-title {
+    font-size: 20px;
+    font-weight: 700;
+    font-family: "Lato", sans-serif;
+    color: #333;
+    text-align: center;
+  }
+  
+  .step-description {
+    font-size: 25px;
+    color:  #4edc80;
+  }
+  

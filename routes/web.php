@@ -22,6 +22,7 @@ use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\DealerRegisterController;
 use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\admin\PermissionsController;
+use App\Http\Controllers\CandidateRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -140,8 +141,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //where the form gets sent information to:
     Route::post('dealer/register', [DealerRegisterController::class, 'dealerRegister'])->name('deal.register');
-   //Dealer registration form:
-    Route::view('dealer/register', 'auth.dealer-register')->name('dealer.register');
+    
     //=============================================================ADMIN======================================================
     Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -208,4 +208,21 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Dashboard', [DashboardController::class, 'getAllCandidates'])->middleware('admin');
 });
 
- 
+ //Dealer registration form:
+    Route::view('dealer/register', 'auth.dealer-register')->name('dealer.register');
+    // ==============================================CANDIDATE REGISTRATION==================================================
+    Route::post('candidate/register', [CandidateRegisterController::class, 'store'])->name('candidate.register');
+
+    Route::get('candidate', 'ProductController@index')->name('candidates.index');
+    
+    Route::get('candidate/create-step-one', [CandidateRegisterController::class,'createStepOne'])->name('candidates.create.step.one');
+    Route::post('candidate/create-step-one', [CandidateRegisterController::class,'postCreateStepOne'])->name('candidates.create.step.one.post');
+    
+    Route::get('candidate/create-step-two', [CandidateRegisterController::class,'createStepTwo'])->name('candidates.create.step.two');
+    Route::post('candidate/create-step-two', [CandidateRegisterController::class,'postCreateStepTwo'])->name('candidates.create.step.two.post');
+    
+    Route::get('candidate/create-step-three', [CandidateRegisterController::class,'createStepThree'])->name('candidates.create.step.three');
+    Route::post('candidate/create-step-three', [CandidateRegisterController::class,'postCreateStepThree'])->name('candidates.create.step.three.post');
+    
+    Route::get('candidate/create-step-four', [CandidateRegisterController::class,'createStepFour'])->name('candidates.create.step.four');
+    Route::post('candidate/create-step-four', [CandidateRegisterController::class,'postCreateStepFour'])->name('candidates.create.step.four.post');
