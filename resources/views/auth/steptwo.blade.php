@@ -24,7 +24,7 @@
                   <label for="current_department">Current or Last Department *</label>
                   <select class="form-control" name="category_id">
                   @php
-                    $categorys = App\Models\category::all();
+                    $categorys = App\Models\Category::all();
                     foreach ($categorys as $category) {
                       echo "<option value='{$category->id}'>{$category->name}</option>";
                     }
@@ -37,7 +37,7 @@
                   <label for="brand_experience">Last or Current Brand Experience</label>
                   <select class="form-control" name="brand_id">
                     @php
-                      $brands = App\Models\brand::all();
+                      $brands = App\Models\Brand::all();
                       foreach ($brands as $brand) {
                         echo "<option value='{$brand->id}'>{$brand->name}</option>";
                       }
@@ -49,7 +49,7 @@
                   <label for="current_title">Last or Current Title</label>
                   <select class="form-control" name="title">
                     @php
-                      $titles = App\Models\title::all();
+                      $titles = App\Models\Title::all();
                       foreach ($titles as $title) {
                         echo "<option value='{$title->title}'>{$title->title}</option>";
                       }
@@ -61,7 +61,7 @@
                   <label for="group_id">Last or Current Dealer Group *</label>
                   <select class="form-control" name="group_id">
                     @php
-                      $groups = App\Models\group::all();
+                      $groups = App\Models\Group::all();
                       foreach ($groups as $group) {
                         echo "<option value='{$group->name}'>{$group->name}</option>";
                       }
