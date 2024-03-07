@@ -7,6 +7,7 @@ use App\Models\Title;
 use App\Models\Profile;
 use Illuminate\Http\Request;
 use App\Http\Middleware\Seeker;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 
 class CandidateRegisterController extends Controller
@@ -72,10 +73,8 @@ class CandidateRegisterController extends Controller
     {
         $validatedData = $request->validate([
             'user_type' => ['required', 'string'],
-            'name2' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'race' => ['required', 'string', 'max:255'],
-            'id_number' => ['required', 'string', 'max:255'],
             'gender' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'driver_liscence' => ['required', 'string', 'max:255'],
@@ -161,12 +160,14 @@ class CandidateRegisterController extends Controller
 
         // Get user data from session
         $user = $request->session()->get('user');
+        $role = Role::where('name', 'seeker')->first();
 
         // Craete new user
         $newUser = new User();
         $newUser->name = $user['name'];
         $newUser->email = $user['email'];
         $newUser->password = Hash::make($user['password']);
+        $newUser->assignRole($role);
         $newUser->user_type = "seeker";
         $newUser->save();
 
@@ -205,7 +206,6 @@ class CandidateRegisterController extends Controller
         $profile->province = $userData['provinces'];    
         $profile->first_language = $userData['first_languages'];
         $profile->second_language = $userData['second_languages'];
-        $profile->name = $userData['name2'];
         $profile->driver_liscence = $userData['driver_liscence'];
         $profile->dealer_experience = $userData['dealer_experience'];
         $profile->save();

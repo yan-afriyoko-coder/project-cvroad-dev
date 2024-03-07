@@ -25,32 +25,29 @@ class HomeController extends Controller
     public function index()
     {
 
+        $user = Auth::user();
 
-        $adminRole = Auth::user()->roles()->pluck('name');
-        if ($adminRole->contains('admin')) {
+        if ($user->hasRole('admin')) {
             return redirect('/dashboard');
         }
+        
         return view('home');
     }
 
     public function home()
     {
-        //if user candidate          
-        if (Auth::user()->isSeeker()) {
+        $user = Auth::user();
+
+        if ($user->isSeeker()) {
             $jobs = $this->job_repo->latest();
             $categories = $this->category_repo->all();
             $cat_loops = ceil(count($categories) / 4);
             $dealers = $this->dealer_repo->topDealers();
-
+    
             return view('candidate.index', compact('jobs', 'categories', 'cat_loops', 'dealers'));
-        }
-        //if user candidate          
-        if (Auth::user()->isEmployer()) {
+        } elseif ($user->isEmployer()) {
             return redirect()->route('dealership.index');
-        }
-
-        //if is admin
-        if (Auth::user()->isAdmin()) {
+        } elseif ($user->isAdmin()) {
             return redirect()->route('admin.dashboard');
         }
     }

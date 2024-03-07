@@ -21,7 +21,7 @@
               <input type="hidden" name="user_type" value="seeker">
               <!-- Name input -->
               <div class="mb-3">
-                  <input class="form-control" name="name" type="text" placeholder="Name *" required />
+                  <input class="form-control" name="name" type="text" placeholder="First Name *" required />
                   <div class="invalid-feedback" data-sb-feedback="name:required">Name is required.</div>
               </div>
               <!-- Email address input -->

@@ -88,29 +88,17 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isAdmin()
     {
-        $role = false;
-        if ($this->user_type == "admin") {
-            $role = true;
-        }
-        return $role;
+        return $this->hasRole('Admin');
     }
 
     public function isEmployer()
     {
-        $role = false;
-        if ($this->user_type == "employer") {
-            $role = true;
-        }
-        return $role;
+        return $this->hasRole('Employer');
     }
 
     public function isSeeker()
     {
-        $role = false;
-        if ($this->user_type == "seeker") {
-            $role = true;
-        }
-        return $role;
+        return $this->hasRole('Seeker');
     }
 
     public function jobs()

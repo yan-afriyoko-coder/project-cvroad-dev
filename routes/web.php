@@ -39,8 +39,6 @@ use App\Http\Controllers\CandidateRegisterController;
 Auth::routes(['verify' => true]);
 Auth::routes();
 
-
-
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
 //==============================================ABOUT================================================================
 Route::get('/privacy', [AboutController::class, 'privacy'])->name('privacy');
@@ -77,6 +75,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('job/end/{id}', [JobController::class, 'end'])->name('jobs.end');
     //Route::get('/jobs/{id}/{job}', [JobController::class, 'show'])->name('jobs.show');
 
+
     //===============================================CANDIDATES=========================================================
     //view all candidates
     Route::get('/candidates', [CandidateController::class, 'index'])->name('candidate.all')->middleware('employer');
@@ -90,11 +89,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('user/other_documents', [UserController::class, 'other_documents'])->name('other_documents');
     //avatar profile candidates
     Route::post('user/avatar', [UserController::class, 'avatar'])->name('avatar');
-
-
-
-
-
 
 
     //===============================================Dealership=================================================================
@@ -125,16 +119,12 @@ Route::group(['middleware' => ['auth']], function () {
     // Route::get('/user/profile', [DynamicDependent::class, 'getCategories'])->middleware('seeker');
     Route::get('/user/profile/gettitles/{id}', [DynamicDependent::class, 'getTitles']);
 
-
     //experience 
     Route::post('user/experience', [WorkExperienceController::class, 'store'])->name('experience.create');
     Route::post('user/experience/delete/{experience}', [WorkExperienceController::class, 'delete'])->name('experience.delete');
 
-
     //dealer registration view
     //can be found under resources/views/auth
-
-
 
     //Applicants apply
     Route::post('/applications/{id}', [JobController::class, 'apply'])->name('apply')->middleware('seeker');
@@ -142,6 +132,7 @@ Route::group(['middleware' => ['auth']], function () {
     //where the form gets sent information to:
     Route::post('dealer/register', [DealerRegisterController::class, 'dealerRegister'])->name('deal.register');
     
+
     //=============================================================ADMIN======================================================
     Route::prefix('admin')->name('admin.')->group(function () {
 
@@ -194,7 +185,6 @@ Route::group(['middleware' => ['auth']], function () {
         //PERMISSIONS
         Route::resource('permissions', PermissionsController::class)->middleware('admin');
         
-
     });
 
     Route::post('/dashboard/{id}/update', [DashboardController::class, 'update'])->name('post.update')->middleware('admin');
@@ -208,7 +198,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Dashboard', [DashboardController::class, 'getAllCandidates'])->middleware('admin');
 });
 
- //Dealer registration form:
+    //Dealer registration form:
     Route::view('dealer/register', 'auth.dealer-register')->name('dealer.register');
     // ==============================================CANDIDATE REGISTRATION==================================================
     Route::post('candidate/register', [CandidateRegisterController::class, 'store'])->name('candidate.register');

@@ -20,12 +20,6 @@
                 <h2 class="step-title"> Step 1 <span class="step-description"> Personal Information</span></h2>
                 @csrf
                 <input type="hidden" name="user_type" value="seeker">
-                <!-- Name input -->
-                <div class="mb-3">
-                  <label for="name">Name *</label>
-                  <input class="form-control" name="name2" type="text" />
-                  <div class="invalid-feedback">Name is required.</div>
-                </div>
                 <!-- Surname input -->
                 <div class="mb-3">
                   <label for="surname">Surname *</label>
@@ -40,12 +34,6 @@
                     <option value="Black">Black</option>
                     <option value="Colored">Colored</option>
                   </select>
-                </div>
-                <!-- ID Number input -->
-                <div class="mb-3">
-                  <label for="id_number">ID Number *</label>
-                  <input class="form-control" name="id_number" type="text" />
-                  <div class="invalid-feedback">ID Number is required.</div>
                 </div>
                 <!-- Gender input -->
                 <div class="mb-3">

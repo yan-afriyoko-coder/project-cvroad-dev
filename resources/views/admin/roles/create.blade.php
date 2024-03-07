@@ -25,7 +25,7 @@
           <label for="permissions" class="form-label">Permissions</label><br>
           @foreach($permissions as $permission)
               <div class="form-check">
-                  <input class="form-check-input" type="checkbox" id="permission_{{ $permission->id }}" name="permissions[]" value="{{ $permission->id }}" {{ isset($roles) && $roles->permissions->contains($permission) ? 'checked' : '' }} required>
+                  <input class="form-check-input" type="checkbox" id="permission_{{ $permission->id }}" name="permissions[]" value="{{ $permission->id }}" {{ isset($roles) && $roles->permissions->contains($permission) ? 'checked' : '' }}>
                   <label class="form-check-label" for="permission_{{ $permission->id }}">{{ $permission->name }}</label>
               </div>
           @endforeach
