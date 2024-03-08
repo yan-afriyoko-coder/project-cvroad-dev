@@ -27,7 +27,7 @@ class HomeController extends Controller
 
         $user = Auth::user();
 
-        if ($user->hasRole('admin')) {
+        if ($user->hasRole('Admin')) {
             return redirect('/dashboard');
         }
         
@@ -48,6 +48,10 @@ class HomeController extends Controller
         } elseif ($user->isEmployer()) {
             return redirect()->route('dealership.index');
         } elseif ($user->isAdmin()) {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->isSuperUser()) {
+            return redirect()->route('admin.dashboard');
+        } elseif ($user->isAdminAccount()) {
             return redirect()->route('admin.dashboard');
         }
     }

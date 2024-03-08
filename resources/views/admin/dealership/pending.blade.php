@@ -51,18 +51,22 @@
                                         <h6>Pending Dealership</h6>
                                       </li>
                                       <li>
+                                        @can('approve-dealer')
                                         <div>
                                             <form action="{{route('admin.dealership_approve',[$dealership->id])}}">
                                             </form>
                                             <button type="button" class="dropdown-item btn-confirm"><i class="bi bi-check"></i> Approve</button>
-                                        </div>                                        
+                                        </div>
+                                        @endcan                                        
                                       </li>
                                       <li>
+                                        @can('reject-dealer')
                                         <div>
                                             <form action="{{route('admin.dealership_reject',[$dealership->id])}}">
                                             </form>
                                             <button type="button" class="dropdown-item btn-confirm"><i class="bi bi-ban"></i> Reject</button>
                                         </div>
+                                        @endcan
                                       </li>
                                     </ul>
                                 </div>                                

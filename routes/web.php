@@ -134,57 +134,76 @@ Route::group(['middleware' => ['auth']], function () {
     
 
     //=============================================================ADMIN======================================================
-    Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
 
+        Route::middleware('role:Admin|Super User')->group(function () {
         //DEALERSHIPS
-        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard')->middleware('admin');
-        Route::get('/dealership/{group}', [DashboardController::class, 'showDealer'])->name('dealership_show')->middleware('admin');
-        Route::get('/dealership-active', [DashboardController::class, 'activeDealers'])->name('dealership_active')->middleware('admin');
-        Route::get('/dealership-suspended', [DashboardController::class, 'suspendedDealers'])->name('dealership_suspended')->middleware('admin');
-        Route::get('/dealership-pending', [DashboardController::class, 'pendingDealers'])->name('dealership_pending')->middleware('admin');
-        Route::get('/dealership-approve/{dealer}', [DashboardController::class, 'approveDealer'])->name('dealership_approve')->middleware('admin');
-        Route::get('/dealership-reject/{dealer}', [DashboardController::class, 'rejectDealer'])->name('dealership_reject')->middleware('admin');
-        Route::get('/dealership-suspend/{dealer}', [DashboardController::class, 'suspendDealer'])->name('dealership_suspend')->middleware('admin');
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+        Route::get('/dealership/{group}', [DashboardController::class, 'showDealer'])->name('dealership_show');
+        Route::get('/dealership-active', [DashboardController::class, 'activeDealers'])->name('dealership_active');
+        Route::get('/dealership-suspended', [DashboardController::class, 'suspendedDealers'])->name('dealership_suspended');
+        Route::get('/dealership-pending', [DashboardController::class, 'pendingDealers'])->name('dealership_pending');
+        Route::get('/dealership-approve/{dealer}', [DashboardController::class, 'approveDealer'])->name('dealership_approve');
+        Route::get('/dealership-reject/{dealer}', [DashboardController::class, 'rejectDealer'])->name('dealership_reject');
+        Route::get('/dealership-suspend/{dealer}', [DashboardController::class, 'suspendDealer'])->name('dealership_suspend');
 
-        Route::get('/dealership-search-axios/{search}', [DashboardController::class, 'axiosSearchDealer'])->name('dealership_search_axios')->middleware('admin'); 
-
+        Route::get('/dealership-search-axios/{search}', [DashboardController::class, 'axiosSearchDealer'])->name('dealership_search_axios'); 
 
         //GROUPS
-        Route::get('/group', [DashboardController::class, 'groups'])->name('groups')->middleware('admin');
-        Route::post('/group-update/{group}', [DashboardController::class, 'updateGroup'])->name('groups_update')->middleware('admin');
-        Route::post('/group', [DashboardController::class, 'createGroup'])->name('groups_create')->middleware('admin');        
-        Route::get('/group/{group}', [DashboardController::class, 'showGroup'])->name('group_show')->middleware('admin');
-        Route::get('/group-active', [DashboardController::class, 'activeGroups'])->name('group_active')->middleware('admin');
-        Route::get('/group-suspended', [DashboardController::class, 'suspendedGroups'])->name('group_suspended')->middleware('admin');
-        Route::get('/group-applications', [DashboardController::class, 'applicationGroups'])->name('group_applications')->middleware('admin');
-        Route::get('/group-remove-dealer/{dealer}', [DashboardController::class, 'removeDealer'])->name('group_remove_dealer')->middleware('admin');
-        Route::post('/group-add-dealer/{group}', [DashboardController::class, 'addDealer'])->name('group_add_dealer')->middleware('admin');
+        Route::get('/group', [DashboardController::class, 'groups'])->name('groups');
+        Route::post('/group-update/{group}', [DashboardController::class, 'updateGroup'])->name('groups_update');
+        Route::post('/group', [DashboardController::class, 'createGroup'])->name('groups_create');        
+        Route::get('/group/{group}', [DashboardController::class, 'showGroup'])->name('group_show');
+        Route::get('/group-active', [DashboardController::class, 'activeGroups'])->name('group_active');
+        Route::get('/group-suspended', [DashboardController::class, 'suspendedGroups'])->name('group_suspended');
+        Route::get('/group-applications', [DashboardController::class, 'applicationGroups'])->name('group_applications');
+        Route::get('/group-remove-dealer/{dealer}', [DashboardController::class, 'removeDealer'])->name('group_remove_dealer');
+        Route::post('/group-add-dealer/{group}', [DashboardController::class, 'addDealer'])->name('group_add_dealer');
 
-        Route::get('/group-find-axios/{group}', [DashboardController::class, 'axiosGetGroup'])->name('groups_get_axios')->middleware('admin');
+        Route::get('/group-find-axios/{group}', [DashboardController::class, 'axiosGetGroup'])->name('groups_get_axios');
 
         //CANDIDATES
-        Route::get('/candidates', [DashboardController::class, 'candidates'])->name('candidates')->middleware('admin');
-        Route::get('/candidate-active', [DashboardController::class, 'activeCandidates'])->name('candidate_active')->middleware('admin');
-        Route::get('/candidate-suspended', [DashboardController::class, 'suspendedCandidates'])->name('candidate_suspended')->middleware('admin');
-        Route::get('/candidate-pending', [DashboardController::class, 'pendingCandidates'])->name('candidate_pending')->middleware('admin');
-        Route::get('/candidate-applications', [DashboardController::class, 'applicationCandidates'])->name('candidate_applications')->middleware('admin');
-        Route::get('/candidate/{candidate}', [DashboardController::class, 'showCandidate'])->name('candidate_show')->middleware('admin');
+        Route::get('/candidates', [DashboardController::class, 'candidates'])->name('candidates');
+        Route::get('/candidate-active', [DashboardController::class, 'activeCandidates'])->name('candidate_active');
+        Route::get('/candidate-suspended', [DashboardController::class, 'suspendedCandidates'])->name('candidate_suspended');
+        Route::get('/candidate-pending', [DashboardController::class, 'pendingCandidates'])->name('candidate_pending');
+        Route::get('/candidate-applications', [DashboardController::class, 'applicationCandidates'])->name('candidate_applications');
+        Route::get('/candidate/{candidate}', [DashboardController::class, 'showCandidate'])->name('candidate_show');
 
-        Route::get('/candidate-approve/{candidate}', [DashboardController::class, 'approveCandidate'])->name('candidate_approve')->middleware('admin');
-        Route::get('/candidate-suspend/{candidate}', [DashboardController::class, 'suspendCandidate'])->name('candidate_suspend')->middleware('admin');
-        Route::get('/candidate-reject/{candidate}', [DashboardController::class, 'rejectCandidate'])->name('candidate_reject')->middleware('admin');
+        Route::get('/candidate-approve/{candidate}', [DashboardController::class, 'approveCandidate'])->name('candidate_approve');
+        Route::get('/candidate-suspend/{candidate}', [DashboardController::class, 'suspendCandidate'])->name('candidate_suspend');
+        Route::get('/candidate-reject/{candidate}', [DashboardController::class, 'rejectCandidate'])->name('candidate_reject');
 
         //USERS
-        Route::resource('users', UsersController::class)->middleware('admin');
+        Route::resource('users', UsersController::class);
         
-
         //ROLES
-        Route::resource('roles', RolesController::class)->middleware('admin');
-        
+        Route::resource('roles', RolesController::class);
 
         //PERMISSIONS
-        Route::resource('permissions', PermissionsController::class)->middleware('admin');
+        Route::resource('permissions', PermissionsController::class);
+        });
+
+        Route::middleware('role:Admin Account')->group(function () {
+
+        //DEALERSHIPS
+        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
         
+         //CANDIDATES
+         Route::get('/candidates', [DashboardController::class, 'candidates'])->name('candidates');
+         Route::get('/candidate-active', [DashboardController::class, 'activeCandidates'])->name('candidate_active');
+         Route::get('/candidate-suspended', [DashboardController::class, 'suspendedCandidates'])->name('candidate_suspended');
+         Route::get('/candidate-pending', [DashboardController::class, 'pendingCandidates'])->name('candidate_pending');
+         Route::get('/candidate-applications', [DashboardController::class, 'applicationCandidates'])->name('candidate_applications');
+         Route::get('/candidate/{candidate}', [DashboardController::class, 'showCandidate'])->name('candidate_show');
+ 
+         Route::get('/candidate-approve/{candidate}', [DashboardController::class, 'approveCandidate'])->name('candidate_approve');
+         Route::get('/candidate-suspend/{candidate}', [DashboardController::class, 'suspendCandidate'])->name('candidate_suspend');
+         Route::get('/candidate-reject/{candidate}', [DashboardController::class, 'rejectCandidate'])->name('candidate_reject');
+ 
+         //USERS
+         Route::resource('users', UsersController::class);
+        });
     });
 
     Route::post('/dashboard/{id}/update', [DashboardController::class, 'update'])->name('post.update')->middleware('admin');

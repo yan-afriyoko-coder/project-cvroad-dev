@@ -79,18 +79,22 @@
                                     <h6>Pending Candidate</h6>
                                   </li>
                                   <li>
+                                    @can('approve-candidate')
                                     <div>
                                         <form action="{{route('admin.candidate_approve',[$profile->id])}}">                                            
                                         </form>
                                         <button class="btn-confirm dropdown-item"> <i class="bi bi-check"></i> Approve Candidate</button>
                                     </div>
+                                    @endcan
                                   </li>
                                   <li>
+                                    @can('reject-candidate')
                                     <div>
                                         <form action="{{route('admin.candidate_reject',[$profile->id])}}">                                            
                                         </form>
                                         <button class="btn-confirm dropdown-item"> <i class="bi bi-ban"></i> Reject Candidate</button>
                                     </div>
+                                    @endcan
                                   </li>
                                 </ul>
                               </div>
