@@ -108,7 +108,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dealership/jobs/{dealer}', [DealershipController::class, 'dealerJobs'])->name('dealer_jobs');
     //view candidate 
     Route::get('/dealership/jobs/candidate/{candidate}', [DealershipController::class, 'findCandidate'])->name('dealer_job_candidate');
-
     //user profile
     Route::get('user/profile', [UserController::class, 'index'])->name('user.profile');
     Route::get('user/profile-edit', [UserController::class, 'edit'])->name('edit.profile');
@@ -118,17 +117,13 @@ Route::group(['middleware' => ['auth']], function () {
     //user dependant drop down
     // Route::get('/user/profile', [DynamicDependent::class, 'getCategories'])->middleware('seeker');
     Route::get('/user/profile/gettitles/{id}', [DynamicDependent::class, 'getTitles']);
-
     //experience 
     Route::post('user/experience', [WorkExperienceController::class, 'store'])->name('experience.create');
     Route::post('user/experience/delete/{experience}', [WorkExperienceController::class, 'delete'])->name('experience.delete');
-
     //dealer registration view
     //can be found under resources/views/auth
-
     //Applicants apply
     Route::post('/applications/{id}', [JobController::class, 'apply'])->name('apply')->middleware('seeker');
-
     //where the form gets sent information to:
     Route::post('dealer/register', [DealerRegisterController::class, 'dealerRegister'])->name('deal.register');
     
@@ -136,73 +131,68 @@ Route::group(['middleware' => ['auth']], function () {
     //=============================================================ADMIN======================================================
     Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
 
+        // Routes accessible by Admin and Super User
         Route::middleware('role:Admin|Super User')->group(function () {
-        //DEALERSHIPS
-        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-        Route::get('/dealership/{group}', [DashboardController::class, 'showDealer'])->name('dealership_show');
-        Route::get('/dealership-active', [DashboardController::class, 'activeDealers'])->name('dealership_active');
-        Route::get('/dealership-suspended', [DashboardController::class, 'suspendedDealers'])->name('dealership_suspended');
-        Route::get('/dealership-pending', [DashboardController::class, 'pendingDealers'])->name('dealership_pending');
-        Route::get('/dealership-approve/{dealer}', [DashboardController::class, 'approveDealer'])->name('dealership_approve');
-        Route::get('/dealership-reject/{dealer}', [DashboardController::class, 'rejectDealer'])->name('dealership_reject');
-        Route::get('/dealership-suspend/{dealer}', [DashboardController::class, 'suspendDealer'])->name('dealership_suspend');
-
-        Route::get('/dealership-search-axios/{search}', [DashboardController::class, 'axiosSearchDealer'])->name('dealership_search_axios'); 
-
-        //GROUPS
-        Route::get('/group', [DashboardController::class, 'groups'])->name('groups');
-        Route::post('/group-update/{group}', [DashboardController::class, 'updateGroup'])->name('groups_update');
-        Route::post('/group', [DashboardController::class, 'createGroup'])->name('groups_create');        
-        Route::get('/group/{group}', [DashboardController::class, 'showGroup'])->name('group_show');
-        Route::get('/group-active', [DashboardController::class, 'activeGroups'])->name('group_active');
-        Route::get('/group-suspended', [DashboardController::class, 'suspendedGroups'])->name('group_suspended');
-        Route::get('/group-applications', [DashboardController::class, 'applicationGroups'])->name('group_applications');
-        Route::get('/group-remove-dealer/{dealer}', [DashboardController::class, 'removeDealer'])->name('group_remove_dealer');
-        Route::post('/group-add-dealer/{group}', [DashboardController::class, 'addDealer'])->name('group_add_dealer');
-
-        Route::get('/group-find-axios/{group}', [DashboardController::class, 'axiosGetGroup'])->name('groups_get_axios');
-
-        //CANDIDATES
-        Route::get('/candidates', [DashboardController::class, 'candidates'])->name('candidates');
-        Route::get('/candidate-active', [DashboardController::class, 'activeCandidates'])->name('candidate_active');
-        Route::get('/candidate-suspended', [DashboardController::class, 'suspendedCandidates'])->name('candidate_suspended');
-        Route::get('/candidate-pending', [DashboardController::class, 'pendingCandidates'])->name('candidate_pending');
-        Route::get('/candidate-applications', [DashboardController::class, 'applicationCandidates'])->name('candidate_applications');
-        Route::get('/candidate/{candidate}', [DashboardController::class, 'showCandidate'])->name('candidate_show');
-
-        Route::get('/candidate-approve/{candidate}', [DashboardController::class, 'approveCandidate'])->name('candidate_approve');
-        Route::get('/candidate-suspend/{candidate}', [DashboardController::class, 'suspendCandidate'])->name('candidate_suspend');
-        Route::get('/candidate-reject/{candidate}', [DashboardController::class, 'rejectCandidate'])->name('candidate_reject');
-
-        //USERS
-        Route::resource('users', UsersController::class);
-        
-        //ROLES
-        Route::resource('roles', RolesController::class);
-
-        //PERMISSIONS
-        Route::resource('permissions', PermissionsController::class);
+            // DEALERSHIPS
+            Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+            Route::get('/dealership/{group}', [DashboardController::class, 'showDealer'])->name('dealership_show');
+            Route::get('/dealership-active', [DashboardController::class, 'activeDealers'])->name('dealership_active');
+            Route::get('/dealership-suspended', [DashboardController::class, 'suspendedDealers'])->name('dealership_suspended');
+            Route::get('/dealership-pending', [DashboardController::class, 'pendingDealers'])->name('dealership_pending');
+            Route::get('/dealership-approve/{dealer}', [DashboardController::class, 'approveDealer'])->name('dealership_approve');
+            Route::get('/dealership-reject/{dealer}', [DashboardController::class, 'rejectDealer'])->name('dealership_reject');
+            Route::get('/dealership-suspend/{dealer}', [DashboardController::class, 'suspendDealer'])->name('dealership_suspend');
+            Route::get('/dealership-search-axios/{search}', [DashboardController::class, 'axiosSearchDealer'])->name('dealership_search_axios'); 
+    
+            // GROUPS
+            Route::get('/group', [DashboardController::class, 'groups'])->name('groups');
+            Route::post('/group-update/{group}', [DashboardController::class, 'updateGroup'])->name('groups_update');
+            Route::post('/group', [DashboardController::class, 'createGroup'])->name('groups_create');        
+            Route::get('/group/{group}', [DashboardController::class, 'showGroup'])->name('group_show');
+            Route::get('/group-active', [DashboardController::class, 'activeGroups'])->name('group_active');
+            Route::get('/group-suspended', [DashboardController::class, 'suspendedGroups'])->name('group_suspended');
+            Route::get('/group-applications', [DashboardController::class, 'applicationGroups'])->name('group_applications');
+            Route::get('/group-remove-dealer/{dealer}', [DashboardController::class, 'removeDealer'])->name('group_remove_dealer');
+            Route::post('/group-add-dealer/{group}', [DashboardController::class, 'addDealer'])->name('group_add_dealer');
+            Route::get('/group-find-axios/{group}', [DashboardController::class, 'axiosGetGroup'])->name('groups_get_axios');
+            
+            // // CANDIDATES
+            // Route::get('/candidates', [DashboardController::class, 'candidates'])->name('candidates');
+            // Route::get('/candidate-active', [DashboardController::class, 'activeCandidates'])->name('candidate_active');
+            // Route::get('/candidate-suspended', [DashboardController::class, 'suspendedCandidates'])->name('candidate_suspended');
+            // Route::get('/candidate-pending', [DashboardController::class, 'pendingCandidates'])->name('candidate_pending');
+            // Route::get('/candidate-applications', [DashboardController::class, 'applicationCandidates'])->name('candidate_applications');
+            // Route::get('/candidate/{candidate}', [DashboardController::class, 'showCandidate'])->name('candidate_show');
+            // Route::get('/candidate-approve/{candidate}', [DashboardController::class, 'approveCandidate'])->name('candidate_approve');
+            // Route::get('/candidate-suspend/{candidate}', [DashboardController::class, 'suspendCandidate'])->name('candidate_suspend');
+            // Route::get('/candidate-reject/{candidate}', [DashboardController::class, 'rejectCandidate'])->name('candidate_reject');
+    
+            // // USERS
+            // Route::resource('users', UsersController::class);
+    
+            // ROLES
+            Route::resource('roles', RolesController::class);
+    
+            // PERMISSIONS
+            Route::resource('permissions', PermissionsController::class);
         });
-
-        Route::middleware('role:Admin Account')->group(function () {
-
-        //DEALERSHIPS
-        Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-        
-         //CANDIDATES
-         Route::get('/candidates', [DashboardController::class, 'candidates'])->name('candidates');
-         Route::get('/candidate-active', [DashboardController::class, 'activeCandidates'])->name('candidate_active');
-         Route::get('/candidate-suspended', [DashboardController::class, 'suspendedCandidates'])->name('candidate_suspended');
-         Route::get('/candidate-pending', [DashboardController::class, 'pendingCandidates'])->name('candidate_pending');
-         Route::get('/candidate-applications', [DashboardController::class, 'applicationCandidates'])->name('candidate_applications');
-         Route::get('/candidate/{candidate}', [DashboardController::class, 'showCandidate'])->name('candidate_show');
- 
-         Route::get('/candidate-approve/{candidate}', [DashboardController::class, 'approveCandidate'])->name('candidate_approve');
-         Route::get('/candidate-suspend/{candidate}', [DashboardController::class, 'suspendCandidate'])->name('candidate_suspend');
-         Route::get('/candidate-reject/{candidate}', [DashboardController::class, 'rejectCandidate'])->name('candidate_reject');
- 
-         //USERS
-         Route::resource('users', UsersController::class);
+    
+        // Routes accessible by Admin Account
+        Route::middleware('role:Admin Account|Admin|Super User')->group(function () {
+            // CANDIDATES
+            Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+            Route::get('/candidates', [DashboardController::class, 'candidates'])->name('candidates');
+            Route::get('/candidate-active', [DashboardController::class, 'activeCandidates'])->name('candidate_active');
+            Route::get('/candidate-suspended', [DashboardController::class, 'suspendedCandidates'])->name('candidate_suspended');
+            Route::get('/candidate-pending', [DashboardController::class, 'pendingCandidates'])->name('candidate_pending');
+            Route::get('/candidate-applications', [DashboardController::class, 'applicationCandidates'])->name('candidate_applications');
+            Route::get('/candidate/{candidate}', [DashboardController::class, 'showCandidate'])->name('candidate_show');
+            Route::get('/candidate-approve/{candidate}', [DashboardController::class, 'approveCandidate'])->name('candidate_approve');
+            Route::get('/candidate-suspend/{candidate}', [DashboardController::class, 'suspendCandidate'])->name('candidate_suspend');
+            Route::get('/candidate-reject/{candidate}', [DashboardController::class, 'rejectCandidate'])->name('candidate_reject');
+    
+            // USERS
+            Route::resource('users', UsersController::class);
         });
     });
 
