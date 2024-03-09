@@ -25,11 +25,22 @@ class DashboardController extends Controller
 
     function dashboard()
     {
+        // $active_count = $this->dealer_repo->countActive();
+        // $pending_count = $this->dealer_repo->countApplications();
+        // $suspended_count = $this->dealer_repo->countSuspended();
+        // $profiles = $this->candidate_repo->recent();
+        return view('admin.dashboard'
+        // , compact('active_count', 'pending_count', 'suspended_count', 'profiles')
+    );
+    }
+
+    function dealership()
+    {
         $active_count = $this->dealer_repo->countActive();
         $pending_count = $this->dealer_repo->countApplications();
         $suspended_count = $this->dealer_repo->countSuspended();
         $profiles = $this->candidate_repo->recent();
-        return view('admin.dashboard', compact('active_count', 'pending_count', 'suspended_count', 'profiles'));
+        return view("admin.dealership.index",  compact('active_count', 'pending_count', 'suspended_count', 'profiles'));
     }
 
     function pendingDealers()

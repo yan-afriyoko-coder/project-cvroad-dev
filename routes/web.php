@@ -1,12 +1,15 @@
 <?php
 
 use App\Models\Role;
+use App\Models\User;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\Promise\Create;
 use GuzzleHttp\Promise\TaskQueue;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\JobController;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
@@ -135,7 +138,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::middleware('role:Admin|Super User')->group(function () {
             // DEALERSHIPS
             Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-            Route::get('/dealership/{group}', [DashboardController::class, 'showDealer'])->name('dealership_show');
+            Route::get('/dealership', [DashboardController::class, 'dealership'])->name('dealership');
+            Route::get('/dealership/{dealership}', [DashboardController::class, 'showDealer'])->name('dealership_show');
             Route::get('/dealership-active', [DashboardController::class, 'activeDealers'])->name('dealership_active');
             Route::get('/dealership-suspended', [DashboardController::class, 'suspendedDealers'])->name('dealership_suspended');
             Route::get('/dealership-pending', [DashboardController::class, 'pendingDealers'])->name('dealership_pending');
@@ -225,3 +229,24 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('candidate/create-step-four', [CandidateRegisterController::class,'createStepFour'])->name('candidates.create.step.four');
     Route::post('candidate/create-step-four', [CandidateRegisterController::class,'postCreateStepFour'])->name('candidates.create.step.four.post');
+    
+
+    Route::delete('/reset-and-seed-database', function () {
+    try {
+        // Menghapus hubungan antara user dan permission
+        DB::table('model_has_permissions')->delete();
+
+        // Menghapus semua data permission
+        Permission::query()->delete();
+
+        // Menghapus semua data user
+        User::truncate();
+
+        // Jalankan seeder PermissionSeeder
+        Artisan::call('db:seed', ['--class' => 'PermissionSeeder']);
+
+        return "Database reset and seeded successfully.";
+    } catch (\Exception $e) {
+        return "An error occurred: " . $e->getMessage();
+    }
+});
