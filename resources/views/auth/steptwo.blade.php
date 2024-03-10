@@ -12,12 +12,11 @@
             <div class="text-center">
               <img src="{{asset('assets/img/logo.png')}}" alt="" style="max-height: 150px">
             </div>  
-            <h2 class="underscore mb-5 text-center">Employee <span class="green">Registration</span></h2>              
+            <h2 class="underscore mb-5 text-center">Candidate <span class="green">Registration</span></h2>              
             <div class="line"></div>
 
             <!-- section form 2 -->
             <form action="{{ route('candidates.create.step.three.post') }}" method="post" >
-                <h2 class="step-title"> Step 2 <span class="step-description"> Work Experience</span></h2>
                 @csrf
                 <!-- Departement input -->
                 <div class="mb-3">
@@ -121,14 +120,24 @@
                 </div>
   
                 <!-- Form submit button -->
-                <div class="d-flex">
+                {{-- <div class="d-flex">
                     <div class="col-md-6 text-left">
                         <a href="{{ route('candidates.create.step.two') }}" class="btn btn-danger pull-right">Previous</a>
                     </div>
                     <div class="col-md-6 text-right">
                       <button type="submit" class="btn btn-primary">Next</button>
                     </div>
-                </div>
+                </div> --}}
+                <div class="container">
+                  <div class="row justify-content-center text-center">
+                      <div class="col-md-6">
+                          <a href="{{ route('candidates.create.step.two') }}" class="btn btn-danger btn-block mt-2">Previous</a>
+                      </div>
+                      <div class="col-md-6">
+                          <button type="submit" class="btn btn-primary btn-block mt-2">Next</button>
+                      </div>
+                  </div>
+              </div>
               </form>
               <!-- Back to login or register as dealer -->
               <div class="mb-3 d-flex justify-content-center">

@@ -1202,7 +1202,7 @@ footer .footer-wrap .newsletter #subscribe button {
     border-radius: 15% !important;
 }
 
-/* candidate button register */
+/* candidate button register
 #backButton {
     color: #000000 !important;
     border-color: #808080 !important;
@@ -1222,18 +1222,34 @@ footer .footer-wrap .newsletter #subscribe button {
     background-color: #007bff !important;
     border-radius: 12px !important;
     font-weight: 600 !important;
+} */
+
+.btn-primary {
+    /* color: #000000 !important; */
+    /* background-color: #C1C1C1 !important; */
+    /* border-color: #C1C1C1 !important; */
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    width: 70%; /* Sesuaikan lebar dengan keinginan Anda */
 }
 
-.step-title {
-    font-size: 20px;
-    font-weight: 700;
-    font-family: "Lato", sans-serif;
-    color: #333;
-    text-align: center;
-  }
-  
-  .step-description {
-    font-size: 25px;
-    color:  #4edc80;
-  }
-  
+.btn-primary:hover {
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
+.btn-danger {
+    color: #ffffff !important;
+    background-color: transparent !important;
+    border-color: #ffffff !important;
+    border-radius: 12px !important;
+    font-weight: 600 !important;
+    width: 70%; /* Sesuaikan lebar dengan keinginan Anda */
+}
+
+.btn-danger:hover {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+}
+
+

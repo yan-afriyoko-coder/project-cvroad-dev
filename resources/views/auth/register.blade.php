@@ -12,7 +12,7 @@
             <div class="text-center">
               <img src="{{asset('assets/img/logo.png')}}" alt="" style="max-height: 150px">
             </div>  
-            <h2 class="underscore mb-5 text-center">Employee <span class="green">Registration</span></h2>              
+            <h2 class="underscore mb-5 text-center">Candidate <span class="green">Registration</span></h2>              
             <div class="line"></div>
 
             <!-- index register -->
@@ -46,7 +46,7 @@
                   <div class="invalid-feedback" data-sb-feedback="password_confirmation:required">Confirm Password is required.</div>
               </div>
               <!-- Form submit button -->
-              <div class="d-grid">
+              <div class="justify-content-center text-center">
                   <button type="submit" class="btn btn-primary">Next</button>
               </div>
           </form>

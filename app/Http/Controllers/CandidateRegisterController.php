@@ -138,22 +138,19 @@ class CandidateRegisterController extends Controller
     {
         $validatedData = $request->validate([
             'cv' => ['required'],
-            'certificates' => ['required','max:2048'],
-            'payslips' => ['required', 'max:2048'],
-            'other_documents' => ['required', 'max:2048'],
+            'certificates' => ['max:2048'],
+            'payslips' => [ 'max:2048'],
+            'other_documents' => [ 'max:2048'],
         ], 
         [
             'cv.required' => 'CV is required.',
             'cv.file' => 'CV must be a file.',
             'cv.max' => 'CV size cannot exceed 2MB.',
             'cv.mimes' => 'CV must be a PDF, Word, PowerPoint, or Excel file.',
-            'certificates.required' => 'Certificates are required.',
             'certificates.image' => 'Certificates must be an image file.',
             'certificates.max' => 'Certificates size cannot exceed 2MB.',
-            'payslips.required' => 'Payslips are required.',
             'payslips.image' => 'Payslips must be an image file.',
             'payslips.max' => 'Payslips size cannot exceed 2MB.',
-            'other_documents.required' => 'Other documents are required.',
             'other_documents.image' => 'Other documents must be an image file.',
             'other_documents.max' => 'Other documents size cannot exceed 2MB.',
         ]);
@@ -171,12 +168,33 @@ class CandidateRegisterController extends Controller
         $newUser->user_type = "seeker";
         $newUser->save();
 
-        // Store files
-        $cvPath = $request->file('cv')->storeAs('public/cv', 'cv_' . $newUser->id . '.' . $request->file('cv')->extension());
-        $certificatesPath = $request->file('certificates')->storeAs('public/certificates', 'certificates_' . $newUser->id . '.' . $request->file('certificates')->extension());
-        $payslipsPath = $request->file('payslips')->storeAs('public/payslips', 'payslips_' . $newUser->id . '.' . $request->file('payslips')->extension());
-        $otherDocumentsPath = $request->file('other_documents')->storeAs('public/other_documents', 'other_documents_' . $newUser->id . '.' . $request->file('other_documents')->extension());
+        // // Store files
+        // $cvPath = $request->file('cv')->storeAs('public/cv', 'cv_' . $newUser->id . '.' . $request->file('cv')->extension());
+        // $certificatesPath = $request->file('certificates')->storeAs('public/certificates', 'certificates_' . $newUser->id . '.' . $request->file('certificates')->extension());
+        // $payslipsPath = $request->file('payslips')->storeAs('public/payslips', 'payslips_' . $newUser->id . '.' . $request->file('payslips')->extension());
+        // $otherDocumentsPath = $request->file('other_documents')->storeAs('public/other_documents', 'other_documents_' . $newUser->id . '.' . $request->file('other_documents')->extension());
         
+        // Store CV file if exists
+        if ($request->hasFile('cv')) {
+            $cvPath = $request->file('cv')->storeAs('public/cv', 'cv_' . $newUser->id . '.' . $request->file('cv')->extension());
+        }
+
+        // Store Certificates file if exists
+        if ($request->hasFile('certificates')) {
+            $certificatesPath = $request->file('certificates')->storeAs('public/certificates', 'certificates_' . $newUser->id . '.' . $request->file('certificates')->extension());
+        }
+
+        // Store Payslips file if exists
+        if ($request->hasFile('payslips')) {
+            $payslipsPath = $request->file('payslips')->storeAs('public/payslips', 'payslips_' . $newUser->id . '.' . $request->file('payslips')->extension());
+        }
+
+        // Store Other Documents file if exists
+        if ($request->hasFile('other_documents')) {
+            $otherDocumentsPath = $request->file('other_documents')->storeAs('public/other_documents', 'other_documents_' . $newUser->id . '.' . $request->file('other_documents')->extension());
+}
+
+
         // Get user data from session
         $userData = $request->session()->get('user');
 
@@ -188,9 +206,23 @@ class CandidateRegisterController extends Controller
         $profile = new Profile();
         $profile->user_id = $newUser->id;
         $profile->cv = basename($cvPath);
-        $profile->certificates = basename($certificatesPath);
-        $profile->payslips = basename($payslipsPath);
-        $profile->other_documents = basename($otherDocumentsPath);
+        // $profile->certificates = basename($certificatesPath);
+        // $profile->payslips = basename($payslipsPath);
+        // $profile->other_documents = basename($otherDocumentsPath);
+        // Check if certificatesPath is defined before assigning
+        if (isset($certificatesPath)) {
+            $profile->certificates = basename($certificatesPath);
+        }
+
+        // Check if payslipsPath is defined before assigning
+        if (isset($payslipsPath)) {
+            $profile->payslips = basename($payslipsPath);
+        }
+
+        // Check if otherDocumentsPath is defined before assigning
+        if (isset($otherDocumentsPath)) {
+            $profile->other_documents = basename($otherDocumentsPath);
+        }
         $profile->category_id = $userData['category_id'];
         $profile->title = $userData['title'];
         $profile->title_id = $titleId; 

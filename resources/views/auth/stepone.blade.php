@@ -12,12 +12,11 @@
             <div class="text-center">
               <img src="{{asset('assets/img/logo.png')}}" alt="" style="max-height: 150px">
             </div>  
-            <h2 class="underscore mb-5 text-center">Employee <span class="green">Registration</span></h2>              
+            <h2 class="underscore mb-5 text-center">Candidate <span class="green">Registration</span></h2>              
             <div class="line"></div>
 
             <!-- step 1 -->
             <form action="{{ route('candidates.create.step.two.post') }}" method="POST">
-                <h2 class="step-title"> Step 1 <span class="step-description"> Personal Information</span></h2>
                 @csrf
                 <input type="hidden" name="user_type" value="seeker">
                 <!-- Surname input -->
@@ -45,7 +44,7 @@
                 </div>
                 <!-- Address input -->
                 <div class="mb-3">
-                  <label for="address">Address</label>
+                  <label for="address">City and Area</label>
                   <input class="form-control" name="address" type="text" />
                 </div>
                 <!-- Drivers  License input -->
@@ -97,14 +96,25 @@
                   </select>              
                 </div>
                  <!-- Form submit button -->
-                 <div class="d-flex">
+                 {{-- <div class="d-flex">
                     <div class="col-md-6 text-left">
-                        <a href="{{ route('candidates.create.step.one') }}" class="btn btn-danger pull-right">Previous</a>
+                        <a href="{{ route('candidates.create.step.one') }}" class="btn btn-danger">Previous</a>
                     </div>
                     <div class="col-md-6 text-right">
                       <button type="submit" class="btn btn-primary">Next</button>
                     </div>
-                </div>
+                </div> --}}
+                <div class="container">
+                  <div class="row justify-content-center text-center">
+                      <div class="col-md-6">
+                          <a href="{{ route('candidates.create.step.one') }}" class="btn btn-danger btn-block mt-2">Previous</a>
+                      </div>
+                      <div class="col-md-6">
+                          <button type="submit" class="btn btn-primary btn-block mt-2">Next</button>
+                      </div>
+                  </div>
+              </div>
+              
               </form>
               <!-- Back to login or register as dealer -->
               <div class="mb-3 d-flex justify-content-center">
