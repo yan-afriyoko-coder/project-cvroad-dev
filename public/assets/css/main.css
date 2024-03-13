@@ -1202,38 +1202,33 @@ footer .footer-wrap .newsletter #subscribe button {
     border-radius: 15% !important;
 }
 
-/* candidate button register
-#backButton {
+.btn-full-width {
     color: #000000 !important;
-    border-color: #808080 !important;
-    background-color: #f0f0f0 !important;
+    background-color: #ffffff !important;
+    border-color: #C1C1C1 !important;
     border-radius: 12px !important;
     font-weight: 600 !important;
+    width: 100%; 
 }
 
-#register1Button {
-    border-radius: 20px !important;
-    font-weight: 600 !important;
-}
-
-#nextButton {
+.btn-full-width:hover {
     color: #ffffff !important;
-    border-color: #007bff !important;
-    background-color: #007bff !important;
-    border-radius: 12px !important;
-    font-weight: 600 !important;
-} */
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
+}
+
 
 .btn-primary {
-    /* color: #000000 !important; */
-    /* background-color: #C1C1C1 !important; */
-    /* border-color: #C1C1C1 !important; */
+    color: #000000 !important;
+    background-color: #ffffff !important;
+    border-color: #C1C1C1 !important;
     border-radius: 12px !important;
     font-weight: 600 !important;
-    width: 70%; /* Sesuaikan lebar dengan keinginan Anda */
+    width: 70%; 
 }
 
 .btn-primary:hover {
+    color: #ffffff !important;
     background-color: #28a745 !important;
     border-color: #28a745 !important;
 }
@@ -1244,7 +1239,7 @@ footer .footer-wrap .newsletter #subscribe button {
     border-color: #ffffff !important;
     border-radius: 12px !important;
     font-weight: 600 !important;
-    width: 70%; /* Sesuaikan lebar dengan keinginan Anda */
+    width: 70%; 
 }
 
 .btn-danger:hover {

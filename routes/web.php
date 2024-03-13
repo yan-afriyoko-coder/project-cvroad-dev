@@ -22,6 +22,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DealershipController;
 use App\Http\Controllers\admin\RolesController;
 use App\Http\Controllers\admin\UsersController;
+use App\Http\Controllers\CustomController;
 use App\Http\Controllers\DealerRegisterController;
 use App\Http\Controllers\WorkExperienceController;
 use App\Http\Controllers\admin\PermissionsController;
@@ -231,22 +232,4 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('candidate/create-step-four', [CandidateRegisterController::class,'postCreateStepFour'])->name('candidates.create.step.four.post');
     
 
-    Route::delete('/reset-and-seed-database', function () {
-    try {
-        // Menghapus hubungan antara user dan permission
-        DB::table('model_has_permissions')->delete();
-
-        // Menghapus semua data permission
-        Permission::query()->delete();
-
-        // Menghapus semua data user
-        User::truncate();
-
-        // Jalankan seeder PermissionSeeder
-        Artisan::call('db:seed', ['--class' => 'PermissionSeeder']);
-
-        return "Database reset and seeded successfully.";
-    } catch (\Exception $e) {
-        return "An error occurred: " . $e->getMessage();
-    }
-});
+    Route::get('/reset-roles', [CustomController::class, 'resetRoles']);

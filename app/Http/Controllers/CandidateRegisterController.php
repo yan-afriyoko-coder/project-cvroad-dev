@@ -168,12 +168,6 @@ class CandidateRegisterController extends Controller
         $newUser->user_type = "seeker";
         $newUser->save();
 
-        // // Store files
-        // $cvPath = $request->file('cv')->storeAs('public/cv', 'cv_' . $newUser->id . '.' . $request->file('cv')->extension());
-        // $certificatesPath = $request->file('certificates')->storeAs('public/certificates', 'certificates_' . $newUser->id . '.' . $request->file('certificates')->extension());
-        // $payslipsPath = $request->file('payslips')->storeAs('public/payslips', 'payslips_' . $newUser->id . '.' . $request->file('payslips')->extension());
-        // $otherDocumentsPath = $request->file('other_documents')->storeAs('public/other_documents', 'other_documents_' . $newUser->id . '.' . $request->file('other_documents')->extension());
-        
         // Store CV file if exists
         if ($request->hasFile('cv')) {
             $cvPath = $request->file('cv')->storeAs('public/cv', 'cv_' . $newUser->id . '.' . $request->file('cv')->extension());
@@ -206,10 +200,6 @@ class CandidateRegisterController extends Controller
         $profile = new Profile();
         $profile->user_id = $newUser->id;
         $profile->cv = basename($cvPath);
-        // $profile->certificates = basename($certificatesPath);
-        // $profile->payslips = basename($payslipsPath);
-        // $profile->other_documents = basename($otherDocumentsPath);
-        // Check if certificatesPath is defined before assigning
         if (isset($certificatesPath)) {
             $profile->certificates = basename($certificatesPath);
         }

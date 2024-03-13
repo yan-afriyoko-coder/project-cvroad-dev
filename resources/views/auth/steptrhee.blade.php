@@ -42,15 +42,8 @@
                   <input class="form-control" name="other_documents" type="file" placeholder="Other Documents" accept="image/*,.pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx" />
                   <div class="invalid-feedback">Other Documents are required.</div>
                 </div>
+                
                 <!-- Form submit button -->
-                {{-- <div class="d-flex">
-                    <div class="col-md-6 text-left">
-                        <a href="{{ route('candidates.create.step.two') }}" class="btn btn-danger pull-right">Previous</a>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </div>    --}}
                 <div class="container">
                   <div class="row justify-content-center text-center">
                       <div class="col-md-6">
