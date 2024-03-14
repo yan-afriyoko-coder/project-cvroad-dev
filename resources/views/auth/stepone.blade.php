@@ -17,7 +17,8 @@
 
             <!-- step 1 -->
             <form action="{{ route('candidates.create.step.two.post') }}" method="POST">
-                @csrf
+              <h2 class="text-center">Personal Information</h2>
+              @csrf
                 <input type="hidden" name="user_type" value="seeker">
                 <!-- Surname input -->
                 <div class="mb-3">
@@ -95,15 +96,6 @@
                     @endphp
                   </select>              
                 </div>
-                 <!-- Form submit button -->
-                 {{-- <div class="d-flex">
-                    <div class="col-md-6 text-left">
-                        <a href="{{ route('candidates.create.step.one') }}" class="btn btn-danger">Previous</a>
-                    </div>
-                    <div class="col-md-6 text-right">
-                      <button type="submit" class="btn btn-primary">Next</button>
-                    </div>
-                </div> --}}
                 <div class="container">
                   <div class="row justify-content-center text-center">
                       <div class="col-md-6">

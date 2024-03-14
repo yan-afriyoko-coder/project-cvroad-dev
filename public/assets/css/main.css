@@ -1247,4 +1247,9 @@ footer .footer-wrap .newsletter #subscribe button {
     border-color: #ffc107 !important;
 }
 
+.text-center {
+    text-align: center;
+    font-size: 20px;
+
+}
 

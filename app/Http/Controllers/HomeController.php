@@ -44,7 +44,7 @@ class HomeController extends Controller
             $cat_loops = ceil(count($categories) / 4);
             $dealers = $this->dealer_repo->topDealers();
     
-            return view('candidate.index', compact('jobs', 'categories', 'cat_loops', 'dealers'));
+            return view('candidate_user.index', compact('jobs', 'categories', 'cat_loops', 'dealers'));
         } elseif ($user->isEmployer()) {
             return redirect()->route('dealership.index');
         } elseif ($user->isAdmin()) {

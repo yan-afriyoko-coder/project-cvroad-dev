@@ -144,14 +144,9 @@ class CandidateRegisterController extends Controller
         ], 
         [
             'cv.required' => 'CV is required.',
-            'cv.file' => 'CV must be a file.',
             'cv.max' => 'CV size cannot exceed 2MB.',
-            'cv.mimes' => 'CV must be a PDF, Word, PowerPoint, or Excel file.',
-            'certificates.image' => 'Certificates must be an image file.',
             'certificates.max' => 'Certificates size cannot exceed 2MB.',
-            'payslips.image' => 'Payslips must be an image file.',
             'payslips.max' => 'Payslips size cannot exceed 2MB.',
-            'other_documents.image' => 'Other documents must be an image file.',
             'other_documents.max' => 'Other documents size cannot exceed 2MB.',
         ]);
 

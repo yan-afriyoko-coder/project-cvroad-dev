@@ -17,6 +17,7 @@
 
               <!-- section form 4 -->
               <form action="{{ route('candidates.create.step.four.post') }}" method="post" action="/upload" enctype="multipart/form-data" >
+                <h2 class="text-center">Upload Documents</h2>
                 @csrf
                 <!-- CV input -->
                 <div class="mb-3">

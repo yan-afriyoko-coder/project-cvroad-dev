@@ -1,0 +1,316 @@
+/* // =====================Navbar Candidate CSS========================== */
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .navbar-brand {
+    padding: 0;
+    margin-right: 2rem;
+  }
+  
+  .navbar-toggler {
+    border: none;
+    padding: 0.5rem;
+    background-color: transparent;
+    color: #333;
+    font-size: 1.5rem;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .navbar-toggler:focus {
+    box-shadow: none;
+  }
+  
+  .navbar-collapse {
+    flex-grow: 0;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+  }
+  
+  .nav-card-item {
+    padding: 0 1rem;
+  }
+  
+  .nav-card-item-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-link {
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+    display: flex; 
+  align-items: center; 
+  }
+  
+  .nav-link:hover {
+    color: #007bff;
+  }
+  
+  .nav-link.active {
+    color: #007bff;
+  }
+  
+  .create-account {
+    margin-right: 1rem;
+  }
+  
+  .btn-default {
+    background-color: transparent;
+    border: none;
+    color: #333;
+    font-size: 1.5rem;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn-default:hover {
+    color: #007bff;
+  }
+  
+  @media (max-width: 991.98px) {
+    .navbar-expand-xl {
+      flex-direction: column;
+    }
+  
+    .navbar-collapse {
+      flex-grow: 1;
+      padding-left: 30px;
+    }
+  
+    .navbar-nav {
+      flex-direction: column;
+      width: 100%;
+      margin-right: 20px;
+    }
+  
+    .nav-card-item {
+      padding: 0.5rem 1rem;
+    }
+  
+    .nav-card-item-right {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+  }
+  .nav-card-item-right .nav-link {
+    display: flex;
+    align-items: center;
+  }
+
+    .nav-card-item-right .nav-link img {
+    border-radius: 50%;
+    margin-left: 0.5rem;
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  /* // =====================Footer Candidate CSS========================== */
+ /* Footer */
+footer {
+  background-color: #00CA72;
+  padding: 100px 100px 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.footer-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.footer-wrap .about {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.footer-wrap .about img {
+  max-width: 80px;
+  display: inline-block; 
+  vertical-align: middle; 
+  margin-right: 20px; 
+}
+
+.footer-wrap .about .description {
+  flex: 1;
+}
+
+.footer-wrap .about .social-media {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+  pedding: 13px;
+}
+
+.footer-wrap .about .social-media a {
+  display: block;
+  width: 32px;
+  height: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.footer-wrap .abaout,
+.footer-wrap .company,
+.footer-wrap .useful-links {
+  flex: 1;
+  text-align: center;
+  margin-right: 20px;
+  display: flex; 
+  flex-direction: column;
+}
+
+.footer-wrap .company h6,
+.footer-wrap .useful-links h6 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.footer-wrap .company p,
+.footer-wrap .useful-links p {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+
+.footer-wrap .company p a,
+.footer-wrap .useful-links p a {
+  color: #000;
+  text-decoration: none;
+}
+
+.footer-wrap .company p a:hover,
+.footer-wrap .useful-links p a:hover {
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  margin-top: 50px; 
+  text-align: left; 
+  font-size: 20px; 
+  font-weight: 400;
+}
+
+
+@media (max-width: 767.98px) {
+  footer {
+    padding: 30px;
+  }
+  
+  .footer-wrap {
+    flex-direction: column;
+  }
+
+  .footer-wrap .about img {
+    max-width: 100px;
+  }
+
+  .footer-wrap .about,
+  .footer-wrap .company,
+  .footer-wrap .useful-links {
+    flex: none;
+    margin-bottom: 20px;
+  }
+}
+
+/* // =====================Profile User/Candidate CSS==========================  */
+.background {
+  background: linear-gradient(315deg, #B8F3D1, #FFFFFF, #D4F49C);
+  padding-top: 170px;
+  padding-bottom: 100px;
+}
+
+.container {
+  justify-content: space-between;
+  gap: 100px;
+  padding: 0 50px; 
+  width: calc(100% - 100px); 
+  margin: 0 auto; 
+}
+
+.card {
+  width: 1260px; 
+  padding: 60px 100px; 
+  border-radius: 20px; 
+  background: #FFFFFF;
+  box-shadow: 0px 4px 20px 0px #00000012;
+  margin-bottom: 50px;
+  display: flex;
+  flex-direction: row; /* Mengatur elemen anak berjajar dari kiri ke kanan */
+}
+
+.profile-picture {
+  width: auto; 
+  height: auto; 
+  margin-right: 60px; 
+  position: relative; /* Menjadikan posisi relatif untuk menempatkan tombol */
+  
+}
+
+.profile-picture img {
+  max-width: 200px; /* Membuat gambar sesuai dengan lebar kontainer */
+  height: auto; /* Menghindari distorsi gambar */
+}
+
+.edit-button {
+  position: absolute; /* Menjadikan posisi absolut untuk menempatkan tombol */
+  bottom: 0; /* Menempatkan tombol di bagian bawah */
+  right: 0; /* Menempatkan tombol di bagian kanan */
+  transform: translate(50%, 50%); /* Untuk mengatur posisi tombol agar berada di pojok kanan bawah */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: none; /* Menghapus bullet point */
+  padding: 0; /* Menghapus padding default */
+  margin: 0; /* Menghapus margin default */
+}
+
+ul li {
+  margin-bottom: 10px; /* Memberikan jarak antara setiap list item */
+}
+
+.vertical-line {
+  width: 2px;
+  height: 100%;
+  background-color: #333333;
+  margin: 0 20px; /* Menambahkan jarak di sebelah kiri dan kanan garis vertikal */
+}
+
+.data-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px; /* Menambahkan jarak antara garis vertikal dan list data */
+}
+
+.data-item {
+  width: 200px;
+  height: 24px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333333;
+  display: flex;
+  justify-content: space-between; /* Menyusun data dan dummy secara horizontal */
+}
+
+.data-item span {
+  font-weight: bold; /* Menambahkan ketebalan pada data dummy */
+}

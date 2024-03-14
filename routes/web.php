@@ -112,10 +112,12 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dealership/jobs/{dealer}', [DealershipController::class, 'dealerJobs'])->name('dealer_jobs');
     //view candidate 
     Route::get('/dealership/jobs/candidate/{candidate}', [DealershipController::class, 'findCandidate'])->name('dealer_job_candidate');
+
+
+    //===============================================User=================================================================
     //user profile
     Route::get('user/profile', [UserController::class, 'index'])->name('user.profile');
     Route::get('user/profile-edit', [UserController::class, 'edit'])->name('edit.profile');
-    // Route::get('user/profile', [UserController::class, 'index'])->name('user.profile');
     Route::post('user/profile/create', [UserController::class, 'store'])->name('profile.create');
     Route::post('user/profile/update', [UserController::class, 'update'])->name('profile.update');
     //user dependant drop down

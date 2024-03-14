@@ -17,6 +17,7 @@
 
             <!-- section form 2 -->
             <form action="{{ route('candidates.create.step.three.post') }}" method="post" >
+              <h2 class="text-center">Work Experience</h2>
                 @csrf
                 <!-- Departement input -->
                 <div class="mb-3">
