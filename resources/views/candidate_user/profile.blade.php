@@ -36,15 +36,15 @@
                     <li>Language: English, Urdu, Zulu </li>
                     <li>Employment Status: Employed</li>
                 </ul>
+            </div>
                 <div class="vertical-line"></div>
-                <div class="data-list">
-                    <div class="data-item">Dealer Group: <span>Dummy Data</span></div>
-                    <div class="data-item">Current Job: <span>Dummy Data</span></div>
-                    <div class="data-item">Experience: <span>Dummy Data</span></div>
-                    <div class="data-item">Department: <span>Dummy Data</span></div>
-                    <div class="data-item">Brand: <span>Dummy Data</span></div>
-                    <div class="data-item">Salary: <span>Dummy Data</span></div>
-                </div>
+            <div class="data-list">
+                <div class="data-item">Dealer Group: <span>Dummy Data</span></div>
+                <div class="data-item">Current Job: <span>Dummy Data</span></div>
+                <div class="data-item">Experience: <span>Dummy Data</span></div>
+                <div class="data-item">Department: <span>Dummy Data</span></div>
+                <div class="data-item">Brand: <span>Dummy Data</span></div>
+                <div class="data-item">Salary: <span>Dummy Data</span></div>
             </div>
         </div>
         
