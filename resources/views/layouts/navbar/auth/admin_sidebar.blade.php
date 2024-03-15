@@ -2,12 +2,14 @@
 <aside id="sidebar" class="sidebar">
 
   <ul class="sidebar-nav" id="sidebar-nav">
+    @if(auth()->user()->hasPermissionTo('dashboard-view'))
     <li class="nav-item">
       <a class="nav-link {{(!Request::is('admin/dashboard*') ? 'collapsed' : '')}}" href="{{route('admin.dashboard')}}">
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
     </li><!-- End Dashboard Nav -->
+    @endif
 
     @if(auth()->user()->hasPermissionTo('dashboard-dealer-view'))
     <li class="nav-item">
