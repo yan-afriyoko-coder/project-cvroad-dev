@@ -21,6 +21,11 @@ if (Schema::hasTable('brands')) {
     Schema::dropIfExists('brands');
 }
 
+// Delete the roles table if it exists
+if (Schema::hasTable('roles')) {
+    Schema::dropIfExists('roles');
+}
+
 // Delete the categories table if it exists
 if (Schema::hasTable('categories')) {
     Schema::dropIfExists('categories');

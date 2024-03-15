@@ -102,15 +102,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasRole('Admin');
     }
 
-    public function isSuperUser()
+    public function isSuperAdmin()
     {
-        return $this->hasRole('Super User');
+        return $this->hasRole('Super Admin');
     }
-
-    public function isAdminAccount()
-    {
-        return $this->hasRole('Admin Account');
-    }   
 
     public function jobs()
     {
