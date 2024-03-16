@@ -124,7 +124,7 @@
                 <div class="container">
                   <div class="row justify-content-center text-center">
                       <div class="col-md-6">
-                          <a href="{{ route('candidates.create.step.two') }}" class="btn btn-danger btn-block mt-2">Previous</a>
+                          <a href="{{ route('candidates.create.step.two') }}" class="btn btn-danger btn-block mt-2">Back</a>
                       </div>
                       <div class="col-md-6">
                           <button type="submit" class="btn btn-primary btn-block mt-2">Next</button>

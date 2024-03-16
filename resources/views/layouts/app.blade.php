@@ -61,14 +61,14 @@
 
       } 
       
-      .btn-danger
+      /* .btn-danger
       {
         color: #ffffff !important;
         border-color:  #eb8e60 !important;
         background-color: #eb8e60 !important;
         border-radius: 12px !important;
         font-weight: 600 !important;
-      }
+      } */
 
       .btn-google
       {

@@ -1235,16 +1235,16 @@ footer .footer-wrap .newsletter #subscribe button {
 
 .btn-danger {
     color: #ffffff !important;
-    background-color: transparent !important;
-    border-color: #ffffff !important;
+    background-color: #02ce65 !important;
+    border-color: #02ce65 !important;
     border-radius: 12px !important;
     font-weight: 600 !important;
     width: 70%; 
 }
 
 .btn-danger:hover {
-    background-color: #ffc107 !important;
-    border-color: #ffc107 !important;
+    background-color: #28a745 !important;
+    border-color: #28a745 !important;
 }
 
 .text-center {
