@@ -227,14 +227,20 @@ footer {
 }
 
 /* // =====================Profile User/Candidate CSS==========================  */
-.background {
+/* .background {
+  background: linear-gradient(315deg, #B8F3D1, #FFFFFF, #D4F49C);
+  padding-top: 170px;
+  padding-bottom: 100px;
+} */
+
+.profile {
   background: linear-gradient(315deg, #B8F3D1, #FFFFFF, #D4F49C);
   padding-top: 170px;
   padding-bottom: 100px;
 }
 
 .container {
-  justify-content: space-between;
+  /* justify-content: space-between; */
   gap: 100px;
   padding: 0 50px; 
   width: calc(100% - 100px); 
@@ -242,75 +248,158 @@ footer {
 }
 
 .card {
-  width: 1260px; 
+  width: 1213 px;
+  height: 332px;
   padding: 60px 100px; 
   border-radius: 20px; 
   background: #FFFFFF;
   box-shadow: 0px 4px 20px 0px #00000012;
   margin-bottom: 50px;
   display: flex;
-  flex-direction: row; /* Mengatur elemen anak berjajar dari kiri ke kanan */
+  flex-direction: row;
+}
+.cards {
+  width: 1213 px;
+  height: 332px;
+  padding: 60px 50px; 
+  border-radius: 20px; 
+  background: #FFFFFF;
+  box-shadow: 0px 4px 20px 0px #00000012;
+  margin-bottom: 50px;
 }
 
 .profile-picture {
   width: auto; 
   height: auto; 
   margin-right: 60px; 
-  position: relative; /* Menjadikan posisi relatif untuk menempatkan tombol */
+  position: relative; 
   
 }
 
 .profile-picture img {
-  max-width: 200px; /* Membuat gambar sesuai dengan lebar kontainer */
-  height: auto; /* Menghindari distorsi gambar */
+  max-width: 200px; 
+  height: auto; 
 }
 
 .edit-button {
-  position: absolute; /* Menjadikan posisi absolut untuk menempatkan tombol */
-  bottom: 0; /* Menempatkan tombol di bagian bawah */
-  right: 0; /* Menempatkan tombol di bagian kanan */
-  transform: translate(50%, 50%); /* Untuk mengatur posisi tombol agar berada di pojok kanan bawah */
+  position: absolute;
+  top: 0;
+  right: 0; 
+  background: none;
+  border: none;
+  margin-right: 50px;
+  margin-top: 25px;
+  cursor: pointer;
+}
+
+.edit-profile {
+  position: absolute; 
+  bottom: 0; 
+  right: 0; 
   background: none;
   border: none;
   cursor: pointer;
 }
 
 ul {
-  list-style-type: none; /* Menghapus bullet point */
-  padding: 0; /* Menghapus padding default */
-  margin: 0; /* Menghapus margin default */
+  list-style-type: none; 
+  padding: 0; 
+  margin: 0; 
 }
 
 ul li {
-  margin-bottom: 10px; /* Memberikan jarak antara setiap list item */
+  margin-bottom: 10px; 
 }
 
 .vertical-line {
   width: 2px;
-  height: 100%;
   background-color: #333333;
-  margin: 0 20px; /* Menambahkan jarak di sebelah kiri dan kanan garis vertikal */
+  margin: 0 50px; 
 }
 
 .data-list {
   display: flex;
   flex-direction: column;
-  margin-top: 20px; /* Menambahkan jarak antara garis vertikal dan list data */
+  margin-top: 13px; 
 }
 
 .data-item {
-  width: 200px;
+  width: 300px;
   height: 24px;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  color: #333333;
   display: flex;
-  justify-content: space-between; /* Menyusun data dan dummy secara horizontal */
+  justify-content: space-between; 
 }
 
 .data-item span {
-  font-weight: bold; /* Menambahkan ketebalan pada data dummy */
+  font-weight: bold; 
 }
+
+.card-add {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.card-add h2 {
+  margin: 0; 
+}
+
+.card-add button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.card-add button svg {
+  width: 24px; 
+  height: 24px;
+}
+
+.card-add button:first-child {
+  margin-right: 10px; 
+}
+
+.table thead th {
+  background-color: #E5FFF2;
+  width: 1130px;
+  padding-top:15px;
+  padding-bottom:15px;
+  /* margin-bottom: 78px; */
+  border: none;
+  border-bottom: 1px solid #333333;
+}
+
+.table tbody td {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.delete {
+  background-color: transparent;
+  color: #F62B54;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.delete svg {
+  fill: #F62B54;
+  margin-right: 5px; 
+}
+
+.actin {
+  display: flex;
+  align-items: center; 
+}
+
+.actin button {
+  margin-left: 10px; 
+}
+
+.table {
+  flex: 1; 
+}
+
+/* // =====================Client Profile Card CSS========================== */
