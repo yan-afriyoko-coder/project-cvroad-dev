@@ -86,11 +86,7 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongstoMany(Role::class);
     }
 
-    public function isAdmin()
-    {
-        return $this->hasRole('Admin');
-    }
-
+    
     public function isEmployer()
     {
         return $this->hasRole('Employer');
@@ -100,16 +96,16 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasRole('Seeker');
     }
-    
-    public function isSuperUser()
+
+    public function isAdmin()
     {
-        return $this->hasRole('Super User');
+        return $this->hasRole('Admin');
     }
-       
-    public function isAdminAccount()
+
+    public function isSuperAdmin()
     {
-        return $this->hasRole('Admin Account');
-    }   
+        return $this->hasRole('Super Admin');
+    }
 
     public function jobs()
     {

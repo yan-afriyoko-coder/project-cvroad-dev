@@ -49,7 +49,7 @@ class HomeController extends Controller
             return redirect()->route('dealership.index');
         } elseif ($user->isAdmin()) {
             return redirect()->route('admin.dashboard');
-        } elseif ($user->isSuperUser()) {
+        } elseif ($user->isSuperAdmin()) {
             return redirect()->route('admin.dashboard');
         } elseif ($user->isAdminAccount()) {
             return redirect()->route('admin.dashboard');

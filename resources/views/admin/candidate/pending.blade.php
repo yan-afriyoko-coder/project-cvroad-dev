@@ -79,22 +79,22 @@
                                     <h6>Pending Candidate</h6>
                                   </li>
                                   <li>
-                                    @can('approve-candidate')
+                                    @if(auth()->user()->hasPermissionTo('approve-candidate'))
                                     <div>
                                         <form action="{{route('admin.candidate_approve',[$profile->id])}}">                                            
                                         </form>
                                         <button class="btn-confirm dropdown-item"> <i class="bi bi-check"></i> Approve Candidate</button>
                                     </div>
-                                    @endcan
+                                    @endif
                                   </li>
                                   <li>
-                                    @can('reject-candidate')
+                                    @if(auth()->user()->hasPermissionTo('reject-candidate'))
                                     <div>
                                         <form action="{{route('admin.candidate_reject',[$profile->id])}}">                                            
                                         </form>
                                         <button class="btn-confirm dropdown-item"> <i class="bi bi-ban"></i> Reject Candidate</button>
                                     </div>
-                                    @endcan
+                                    @endif
                                   </li>
                                 </ul>
                               </div>

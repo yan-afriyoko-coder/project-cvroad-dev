@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class AdminAccountMiddleware
+class SuperAdmin
 {
     /**
      * Handle an incoming request.
@@ -16,7 +16,7 @@ class AdminAccountMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->user_type == 'Admin Account') {
+        if (Auth::check() && Auth::user()->user_type == 'Super Admin') {
             return $next($request);
         } else {
             return redirect('/');

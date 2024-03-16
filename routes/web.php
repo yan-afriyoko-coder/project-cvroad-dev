@@ -136,7 +136,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
 
         // Routes accessible by Admin and Super User
-        Route::middleware('role:Admin|Super User')->group(function () {
+        Route::middleware('role:Admin|Super Admin')->group(function () {
             // DEALERSHIPS
             Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('/dealership', [DashboardController::class, 'dealership'])->name('dealership');
@@ -183,7 +183,7 @@ Route::group(['middleware' => ['auth']], function () {
         });
     
         // Routes accessible by Admin Account
-        Route::middleware('role:Admin Account|Admin|Super User')->group(function () {
+        Route::middleware('role:Admin Account|Admin|Super Admin')->group(function () {
             // CANDIDATES
             Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
             Route::get('/candidates', [DashboardController::class, 'candidates'])->name('candidates');
