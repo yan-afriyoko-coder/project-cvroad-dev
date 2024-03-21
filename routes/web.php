@@ -43,6 +43,10 @@ use App\Http\Controllers\CandidateRegisterController;
 Auth::routes(['verify' => true]);
 Auth::routes();
 
+Route::get('/homepage', function () {
+    return view('home');})->name('homepage');
+Route::get('/clientprofile', function () {
+    return view('clientprofile');})->name('client');
 // Route::get('/home', [HomeController::class, 'index'])->name('home');
 //==============================================ABOUT================================================================
 Route::get('/privacy', [AboutController::class, 'privacy'])->name('privacy');
@@ -112,6 +116,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/dealership/jobs/{dealer}', [DealershipController::class, 'dealerJobs'])->name('dealer_jobs');
     //view candidate 
     Route::get('/dealership/jobs/candidate/{candidate}', [DealershipController::class, 'findCandidate'])->name('dealer_job_candidate');
+
+    
+    //===============================================User Profile=================================================================
     //user profile
     Route::get('user/profile', [UserController::class, 'index'])->name('user.profile');
     Route::get('user/profile-edit', [UserController::class, 'edit'])->name('edit.profile');

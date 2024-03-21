@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.users')
 @section('guest')
 @include('layouts.navbar.guest.guest_navbar')
 @yield('content')

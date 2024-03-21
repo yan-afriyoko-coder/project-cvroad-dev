@@ -51,8 +51,6 @@ class HomeController extends Controller
             return redirect()->route('admin.dashboard');
         } elseif ($user->isSuperAdmin()) {
             return redirect()->route('admin.dashboard');
-        } elseif ($user->isAdminAccount()) {
-            return redirect()->route('admin.dashboard');
         }
     }
 }

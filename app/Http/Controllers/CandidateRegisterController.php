@@ -110,7 +110,7 @@ class CandidateRegisterController extends Controller
             'category_id' => ['required', 'int'],
             'brand_id' => ['required', 'int'],
             'title' => ['required', 'string'],
-            'group_id' => ['required', 'string'],
+            'group_id' => ['required', 'int'],
             'notice_period' => ['required', 'string'],
             'employment_status' => ['required', 'string'],
             'current_salary' => ['required', 'string'],

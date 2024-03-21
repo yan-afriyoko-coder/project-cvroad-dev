@@ -58,17 +58,21 @@
         background-color: #02ce65 !important;
         border-radius: 12px !important;
         font-weight: 600 !important;
-
       } 
       
-      /* .btn-danger
+      .btn-danger
       {
         color: #ffffff !important;
-        border-color:  #eb8e60 !important;
-        background-color: #eb8e60 !important;
+        border-color:  #02ce65  !important;
+        background-color: #02ce65 !important;
         border-radius: 12px !important;
         font-weight: 600 !important;
-      } */
+      }
+      
+      .btn-danger:hover {
+          background-color: #28a745 !important;
+          border-color: #28a745 !important;
+      }
 
       .btn-google
       {
@@ -86,9 +90,6 @@
         border-radius: 12px !important;
         font-weight: 600 !important;
       }
-      
-      
-
 
       /* Add a dark overlay to the header image */
       .header-overlay {

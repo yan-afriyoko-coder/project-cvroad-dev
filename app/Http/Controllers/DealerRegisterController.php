@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\DealerRegisterRequest;
-use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Dealership;
-use App\Repositories\Interfaces\IDealershipRepo;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+use App\Http\Requests\DealerRegisterRequest;
+use Illuminate\Contracts\Support\ValidatedData;
+use App\Repositories\Interfaces\IDealershipRepo;
 
 class DealerRegisterController extends Controller
 {
@@ -22,7 +24,32 @@ class DealerRegisterController extends Controller
 
     public function dealerRegister(DealerRegisterRequest $request)
     {
-        $results = $this->dealer_repo->register($request);
-        return $results;
+        // Validasi input
+        $validatedData = $request->validated([
+            'dname' => ['required', 'string', 'max:255'],
+            'group_id' => ['required', 'exists:groups,id'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    
+        // Cari peran (role) 'employer'
+        $role = Role::where('name', 'employer')->firstOrFail();
+    
+        // Buat user baru
+        $newUser = User::create([
+            'name' => $request->input('dname'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'user_type' => 'employer'
+        ]);
+
+        // Berikan peran (role) 'employer' kepada user baru
+        $newUser->assignRole($role);
+    
+        // Bersihkan data sesi 'user'
+        $request->session()->forget('user');
+    
+        // Redirect ke halaman login dengan pesan sukses
+        return redirect()->route('login')->with('success', 'Registration successful! Please login to continue.');
     }
 }
