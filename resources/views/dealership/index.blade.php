@@ -48,18 +48,6 @@
       </div>
     </div>
 </main> 
-{{-- <style>
-  /* Add a dark overlay to the header image */
-  .header-overlay {
-      background: rgba(0, 0, 0, 0.7); /* Adjust the alpha (4th value) for opacity */
-      padding: 50px 0; /* Adjust the padding as needed */
-      color: white; /* Text color on the overlay */
-  }
-
-  .header-logo{
-    max-width: 10% !important;
-  }
-</style>   --}}
 
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>

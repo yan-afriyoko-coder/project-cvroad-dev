@@ -97,7 +97,6 @@ class JobRepo implements IJobRepo
      */
     function myJobs()
     {
-        dd(auth()->user()->dealership);
         return Job::where('dealership_id', auth()->user()->dealership->id)->where('status', true)->orderBy("created_at", 'desc')->get();
     }
 

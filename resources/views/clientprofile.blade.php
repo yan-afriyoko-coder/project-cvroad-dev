@@ -8,7 +8,7 @@
                         <img src="{{ asset('assets/img/team-1.jpg') }}" alt="Profile Picture"
                             class="img-fluid rounded-circle mb-3" width="200">
                         <h4 class="mb-2">Muhammad Ibrahim</h4>
-                        <p class="text-muted mb-4">Sales Manager</p>
+                        <p class="text-muted">Sales Manager</p>
                         <p class="text-muted">California</p>
                     </div>
                     <div class="mt-4 d-flex align-items-center border-top border-bottom border-success py-2">

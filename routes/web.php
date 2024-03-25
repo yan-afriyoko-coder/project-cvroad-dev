@@ -86,7 +86,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     //===============================================CANDIDATES=========================================================
     //view all candidates
-    Route::get('/candidates', [CandidateController::class, 'index'])->name('candidate.all')->middleware('employer');
+    Route::get('/candidates', [CandidateController::class, 'index'])->name('candidate.all')->middleware('auth', 'role:Employer');
     //view Candidate profile
     Route::get('/candidates/{id}/{profile}', [CandidateController::class, 'show'])->name('candidate.show');
     //Candidate submission forms
@@ -103,11 +103,11 @@ Route::group(['middleware' => ['auth']], function () {
     //Total vacancies and synopses from the dealer after click from vacancies:
     Route::get('/dealership', [DealershipController::class, 'index'])->name('dealership.index');
     //dealership show 
-    Route::get('/dealership/show', [DealershipController::class, 'show'])->name('dealership.show')->middleware('employer');
+    Route::get('/dealership/show', [DealershipController::class, 'show'])->name('dealership.show');
     //dealership update profile page:
-    Route::get('/dealership/edit', [DealershipController::class, 'edit'])->name('dealership.edit')->middleware('employer');
+    Route::get('/dealership/edit', [DealershipController::class, 'edit'])->name('dealership.edit');
     //how the dealership stores info
-    Route::post('/dealership/create', [DealershipController::class, 'store'])->name('dealership.store')->middleware('employer');
+    Route::post('/dealership/create', [DealershipController::class, 'store'])->name('dealership.store');
     //Dealership cover photo storage- see bottom of create.blade
     Route::post('/dealership/coverphoto', [DealershipController::class, 'coverPhoto'])->name('cover.photo');
     //Dealership Profile photo
