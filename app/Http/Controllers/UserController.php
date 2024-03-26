@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         $profiles = Profile::latest()->paginate(20);
 
-        return view('candidate_user.profile', compact('profiles'));
+        return view('candidate.profile', compact('profiles'));
     }
 
     public function store(Request $request)

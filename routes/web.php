@@ -136,8 +136,7 @@ Route::group(['middleware' => ['auth']], function () {
     //Applicants apply
     Route::post('/applications/{id}', [JobController::class, 'apply'])->name('apply')->middleware('seeker');
     //where the form gets sent information to:
-    Route::post('dealer/register', [DealerRegisterController::class, 'dealerRegister'])->name('deal.register');
-    
+
 
     //=============================================================ADMIN======================================================
     Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
@@ -237,6 +236,12 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::get('candidate/create-step-four', [CandidateRegisterController::class,'createStepFour'])->name('candidates.create.step.four');
     Route::post('candidate/create-step-four', [CandidateRegisterController::class,'postCreateStepFour'])->name('candidates.create.step.four.post');
-    
 
     Route::get('/reset-roles', [CustomController::class, 'resetRoles']);
+
+    // ==============================================CANDIDATE REGISTRATION==================================================
+    Route::post('dealer/register', [DealerRegisterController::class, 'dealerRegister'])->name('deal.register');
+
+    Route::get('dealer/more-information', [DealerRegisterController::class,'createMoreInformation'])->name('dealers.more.information');
+    Route::post('dealer/more-information', [DealerRegisterController::class,'postMoreInformation'])->name('dealers.more.information.post');
+    

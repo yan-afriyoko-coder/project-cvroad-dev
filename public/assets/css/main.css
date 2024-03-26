@@ -70,7 +70,7 @@ h1 {
 .green {
     color: #02ce65;
 }
-
+/* 
 .navbar {
     background-color: transparent;
     z-index: 10;
@@ -86,13 +86,13 @@ h1 {
 
 .navbar .navbar-brand img {
     width: 100%;
-}
+} */
 
 .navbar li .nav-link {
     display: inline-block;
     color: #4b4b4b;
-    padding: 15px 30px !important;
-    margin-right: 20px;
+    padding: 10px 20px !important;
+    margin-right: 5px;
 }
 
 .navbar li .nav-link:hover,
@@ -107,7 +107,7 @@ h1 {
     box-shadow: none;
     outline: none;
 }
-
+/* 
 .navbar .create-account {
     text-decoration: none;
     font-weight: 600;
@@ -132,7 +132,7 @@ h1 {
     background-color: #f1f7eb;
     background-repeat: no-repeat;
     background-position: center 0;
-}
+} */
 
 .main-btn {
     text-align: center;
@@ -799,9 +799,9 @@ ul.list-in-text li:before {
     transform: translate(-50%, -50%);
 }
 
-footer {
+/* footer {
     margin-top: 30px;
-}
+} */
 
 footer .footer-wrap {
     border-top: 1px solid #e7e7e7;
@@ -1253,3 +1253,175 @@ footer .footer-wrap .newsletter #subscribe button {
 
 }
 
+  /* // =====================Footer CSS========================== */
+  .background-green-footer {
+    background: #00CA72;
+  }
+  
+  /* // =====================Profile User/Candidate CSS==========================  */
+   .profile {
+    background: linear-gradient(315deg, #B8F3D1, #FFFFFF, #D4F49C);
+  }
+  
+  .vertical-line {
+    border-left: 2px solid black;
+    height: 100%; 
+  }
+  
+  .data-item {
+    display: flex;
+    margin-right: 20px;
+    justify-content: space-between; 
+  }
+  
+  .data-item span {
+    font-weight: 600 
+  }
+  
+  .profile-picture {
+    position: relative;
+  }
+  
+  .image-container {
+    position: relative;
+  }
+  
+  .edit-profile {
+    position: absolute;
+    bottom: 30px;
+    right: 60px;
+    transform: translate(50%, 50%);
+  }
+  
+  .table thead th {
+    background-color: #E5FFF2;
+    width: 1130px;
+    padding-top:15px;
+    padding-bottom:15px;
+    border: none;
+    border-bottom: 1px solid #333333;
+  }
+  
+  .rounded-20 {
+    border-radius: 20px; 
+  
+  }
+
+  /* // =====================Homepage CSS========================== */
+/* =====================Section 1========================== */
+.home-content-1 {
+    width: 100%;
+    height: 568px;
+    display: flex;
+    margin-top: 100px;
+    align-items: center;
+    justify-content: center;
+    background-color: #02CE6533;
+  }
+  
+  .title-size-54 {
+    font-size: 54px;
+  }
+  
+  .title {
+    margin-bottom: 0.5em;
+    font-size: 54px;
+    font-weight: 700;
+    line-height: 73px;
+    letter-spacing: 0em;
+    text-align: left;
+  }
+  
+  /* =====================Section 2========================== */
+  .home-content-2 {
+    width: 100%;
+    height: 100px;
+    background: #F6F6F6;
+  }
+  .image-grid {
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .image-grid img {
+    max-width: calc(100% / 8); 
+    height: auto;
+  }
+  
+  /* =====================Section 3========================== */
+   .container-section-3 {
+    height: 561px;
+  }
+  
+  .cardt {
+    width: 280px;
+    height: 240.33px;
+    margin-top: 70px;
+    border-radius: 20px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    padding-right: 15px;
+    padding-left: 15px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* =====================Section 4========================== */
+  .home-content-4 {
+    width: 100%;
+    height: 713px;
+    background: #F9F8FE;
+  }
+  
+  .svg-home-2 {
+    margin-top: 200px;
+  }
+  
+  .text-green{
+    color: #02CE6599;
+  }
+  
+  .custom-border {
+    border: 2px solid #02CE6599; 
+    border-radius: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+  
+    .background-gradient-green {
+      background: linear-gradient(to bottom right, #FFFFFF 50%, #54BE96 200%);
+    }
+  
+    .btn-custom {
+      background-color: transparent;
+      color: #000;
+      border: 1px solid #ffffff;
+  }
+  
+  .btn-custom:hover {
+      background-color: #02CE65;
+      border-color: #02CE65;
+  }
+    
+  .profile-card {
+    border-radius: 32px;
+    margin-top: 100px;
+    margin-bottom: 100px; 
+  }
+  
+  .profile-card-2 {
+    border-radius: 32px;
+  }
+  
+  .background-gradient-green-2 {
+    background: linear-gradient(135deg, #FFFFFF,#D4F49C,#B8F3D1);
+  }
+  
+  .abaout-list {
+    display: flex;
+    justify-content: space-between; 
+  }
