@@ -2,87 +2,104 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Dealership;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Dealership;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\Http\Requests\DealerRegisterRequest;
-use Illuminate\Contracts\Support\ValidatedData;
-use App\Repositories\Interfaces\IDealershipRepo;
+use App\Models\Group; // Assuming you have a Group model
+use App\Models\User; // Assuming you have a User model
 
 class DealerRegisterController extends Controller
 {
-    // private $dealer_repo;
-
-    // function __construct(IDealershipRepo $dealer_repo)
-    // {
-    //     $this->dealer_repo = $dealer_repo;
-    // }
-
-    // public function dealerRegister(DealerRegisterRequest $request)
-    // {
-    //     // Validasi input
-    //     $validatedData = $request->validated([
-    //         'dname' => ['required', 'string', 'max:255'],
-    //         'group_id' => ['required', 'exists:groups,id'],
-    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-    //         'password' => ['required', 'string', 'min:8', 'confirmed'],
-    //     ]);
-    
-    //     // Cari peran (role) 'employer'
-    //     $role = Role::where('name', 'employer')->firstOrFail();
-    
-    //     // Buat user baru
-    //     $newUser = User::create([
-    //         'name' => $request->input('dname'),
-    //         'email' => $request->input('email'),
-    //         'password' => Hash::make($request->input('password')),
-    //         'user_type' => 'employer'
-    //     ]);
-
-    //     // Berikan peran (role) 'employer' kepada user baru
-    //     $newUser->assignRole($role);
-    
-    //     // Bersihkan data sesi 'user'
-    //     $request->session()->forget('user');
-    
-    //     // Redirect ke halaman login dengan pesan sukses
-    //     return redirect()->route('login')->with('success', 'Registration successful! Please login to continue.');
-    // }
-
     public function createMoreInformation(Request $request)
     {
-        $user = $request->session()->get('user');
-  
-        return view('auth.dealer-register', compact('user'));
+        return view('auth.dealer-register');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function postCreateStepOne(Request $request)
+    public function postMoreInformation(Request $request)
+    {
+        $validatedData = $request->validate(
+            [
+                'name' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'identification_number' => ['required', 'string'],
+            ],
+            [
+                'name.required' => 'Name is required.',
+                'email.required' => 'Email is required.',
+                'email.email' => 'Invalid email format.',
+                'password.required' => 'Password is required.',
+                'password.min' => 'Password must be at least 8 characters long.',
+                'password.confirmed' => 'Password confirmation does not match.',
+                'identification_number.required' => 'ID Number is required.',
+            ]
+        );
+
+        $request->session()->put('step1_data', $validatedData);
+
+        return redirect()->route('dealer.additional.information');
+    }
+
+    public function createMoreInformation2(Request $request)
+    {
+        return view('auth.dealer-register2');
+    }
+
+    public function postMoreInformation2(Request $request)
     {
         $validatedData = $request->validate([
             'dname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'identification_number' => ['required', 'string'],
-        ], 
-        [
-            'name.required' => 'Name is required.',
-            'email.required' => 'Email is required.',
-            'email.email' => 'Invalid email format.',
-            'password.required' => 'Password is required.',
-            'password.min' => 'Password must be at least 8 characters long.',
-            'password.confirmed' => 'Password confirmation does not match.',
-            'identification_number.required' => 'ID Number is required.',
+            'slug' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string'],
+            'province' => ['required', 'string', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
+            'website' => ['string', 'max:255'],
+            'logo' => ['file', 'max:2048', 'image'],
+            'cover_photo' => ['file', 'max:2048', 'image'],
+            'slogan' => ['string', 'max:255'],
+            'group_id' => ['required', 'integer', 'max:255'],
+            'brand_id' => ['nullable','integer', 'max:255'],
+            'description' => ['string', 'max:255'],
         ]);
-        
-        $request->session()->put('user', $validatedData);
-    
-        return redirect()->route('candidates.create.step.two');
+        $user = User::create([
+            'name' => $request->session()->get('step1_data')['name'],
+            'email' => $request->session()->get('step1_data')['email'],
+            'password' => Hash::make($request->session()->get('step1_data')['password']),
+            'user_type' => 'employer',
+        ]);
+
+        $user->assignRole(Role::where('name', 'employer')->first());
+
+        $logoPath = null;
+        if ($request->hasFile('logo')) {
+            $logoPath = $request->file('logo')->storeAs('public/logo', 'logo_' . $user->id . '.' . $request->file('logo')->extension());
+        }
+
+        $cover_photoPath = null;
+        if ($request->hasFile('cover_photo')) {
+            $cover_photoPath = $request->file('cover_photo')->storeAs('public/cover_photo', 'cover_photo_' . $user->id . '.' . $request->file('cover_photo')->extension());
+        }
+
+        Dealership::create([
+            'user_id' => $user->id,
+            'dname' => $validatedData['dname'],
+            'slug' => $validatedData['slug'],
+            'address' => $validatedData['address'],
+            'province' => $validatedData['province'],
+            'phone' => $validatedData['phone'],
+            'website' => $validatedData['website'],
+            'logo' => $logoPath,
+            'cover_photo' => $cover_photoPath,
+            'slogan' => $validatedData['slogan'],
+            'group_id' => $validatedData['group_id'],
+            'brand_id' => $validatedData['brand_id'] ?? null,
+            'description' => $validatedData['description'],
+        ]);
+
+        $request->session()->forget('step1_data');
+
+        return redirect()->route('login')->with('success', 'Registration successful! Please login to continue.');
     }
 }

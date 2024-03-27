@@ -218,8 +218,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('Dashboard', [DashboardController::class, 'getAllCandidates'])->middleware('admin');
 });
 
-    //Dealer registration form:
-    Route::view('dealer/register', 'auth.dealer-register')->name('dealer.register');
+    
     // ==============================================CANDIDATE REGISTRATION==================================================
     Route::post('candidate/register', [CandidateRegisterController::class, 'store'])->name('candidate.register');
 
@@ -239,9 +238,21 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('/reset-roles', [CustomController::class, 'resetRoles']);
 
-    // ==============================================CANDIDATE REGISTRATION==================================================
-    Route::post('dealer/register', [DealerRegisterController::class, 'dealerRegister'])->name('deal.register');
+    // ==============================================DEALER REGISTRATION==================================================
+    //Dealer registration form:
+    Route::view('dealer/register', 'auth.dealer-register')->name('dealer.register');
+    // Route::post('dealer/register', [DealerRegisterController::class, 'dealerRegister'])->name('deal.register');
 
-    Route::get('dealer/more-information', [DealerRegisterController::class,'createMoreInformation'])->name('dealers.more.information');
-    Route::post('dealer/more-information', [DealerRegisterController::class,'postMoreInformation'])->name('dealers.more.information.post');
+    // Route::get('dealer/more-information', [DealerRegisterController::class,'createMoreInformation'])->name('dealers.more.information');
+    // Route::post('dealer/more-information', [DealerRegisterController::class,'postMoreInformation'])->name('dealers.more.information.post');
     
+    // Route::get('dealer/more-information', [DealerRegisterController::class,'createMoreInformation2'])->name('dealers.more.information.2');
+    // Route::post('dealer/more-information', [DealerRegisterController::class,'postMoreInformation2'])->name('dealers.more.information.2.post');
+    
+    // Dealer registration form (Step 1)
+Route::get('dealer/register', [DealerRegisterController::class, 'createMoreInformation'])->name('dealer.register');
+Route::post('dealer/register', [DealerRegisterController::class, 'postMoreInformation'])->name('dealer.register.post');
+
+// Additional Information (Step 2)
+Route::get('dealer/additional-information', [DealerRegisterController::class,'createMoreInformation2'])->name('dealer.additional.information');
+Route::post('dealer/additional-information', [DealerRegisterController::class,'postMoreInformation2'])->name('dealer.additional.information.post');

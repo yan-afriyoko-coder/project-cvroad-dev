@@ -60,6 +60,12 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="ms-auto navbar-nav text-center">
                 @if (Auth::user()->isSeeker())
+                    <li class="nav-item text-center d-xl-none">
+                        <a class="nav-link" href="{{ route('user.profile') }}">
+                            <img style="max-width: 90px" class="w-50" src="{{ asset('avatar/account.png') }}"
+                                alt="">
+                        </a>
+                    </li>
                     <li class="nav-item fw-semibold fs-5 text-dark">
                         <a class="nav-link" href="{{ route('jobs') }}">Home</a>
                     </li>
@@ -70,6 +76,13 @@
                         <a class="nav-link" href="{{ route('user.profile') }}">Contact Us</a>
                     </li>
                 @elseif (Auth::user()->isEmployer())
+                    <li class="nav-item text-center  d-xl-none">
+                        <a class="nav-link {{ Request::is('dealership/show') ? 'active' : '' }}"
+                            href="{{ route('dealership.show') }}">
+                            <img style="max-width: 90px" class="w-50" src="{{ asset('avatar/account.png') }}"
+                                alt="">
+                        </a>
+                    </li>
                     <li class="nav-item fw-semibold fs-5 text-center text-dark">
                         <a class="nav-link {{ Request::is('dealership') ? 'active' : '' }}"
                             href="{{ route('dealership.index') }}">My Jobs</a>
@@ -87,14 +100,8 @@
                   </li> --}}
                 @endif
             </ul>
-            <ul class="navbar-nav ">
-                <li class="nav-item text-center">
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-default "><i class="fas fa-sign-out-alt"></i></button>
-                    </form>
-                </li>
-                <li class="nav-item text-center">
+            <ul class="navbar-nav align-items-center"> <!-- Changed class to 'align-items-center' -->
+                <li class="nav-item text-center d-none d-xl-block">
                     @if (Auth::user()->isSeeker())
                         <a class="nav-link" href="{{ route('user.profile') }}">
                             <img style="max-width: 90px" class="w-50" src="{{ asset('avatar/account.png') }}"
@@ -107,6 +114,12 @@
                                 alt="">
                         </a>
                     @endif
+                </li>
+                <li class="nav-item text-center">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-default btn-lg"><i class="fas fa-sign-out-alt"></i></button>
+                    </form>
                 </li>
             </ul>
         </div>
